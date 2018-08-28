@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>果宝</title>
+    <style type="text/css">
+
+        html,body{
+            width:100%;
+            height:100%;
+
+        }
+        html{
+            font-size:75%;
+        }
+        html,body,div,ul,li,p,span,h1,h2,h3,img{
+            padding:0;
+            margin:0;
+        }
+        a,a:active,a:hover,a:visited{
+            text-decoration: none;
+        }
+        .wrapper{
+            width: 100%;
+            overflow: hidden;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+            overflow-y: auto;
+        }
+        .logo{
+            width: 48.14814815%;
+            padding-top: 20.18518519%;
+            background: url("img/logo.png") no-repeat;
+            background-size: 100% 100%;
+            margin: 15% auto;
+        }
+        .android-icon{
+            width: 17.59259259%;
+            padding-top: 26.48148148%;
+            background: url("img/android.png") no-repeat;
+            background-size: 100% 100%;
+            float: left;
+            margin: 15% 10%;
+        }
+        .android-gird{
+            background-color: #afc956;
+            position: relative;
+        }
+        .info{
+            position: absolute;
+            right: 0;
+            left: 40%;
+            top: 0;
+            bottom: 0;
+        }
+        .pmt{
+            position: relative;
+            height: 33%;
+            border-bottom: 3px solid #fff;
+        }
+        .pmt:last-child{
+            border-bottom: 0;
+        }
+        .pmt .arrow{
+            right: 8%;
+        }
+        .ios-gird{
+            background-color: #5eb3b5;
+            position: relative;
+        }
+        .ios-icon{
+            width: 16.66666667%;
+            padding-top: 25.46296296%;
+            background: url("img/ios.png") no-repeat;
+            background-size: 100% 100%;
+            float: left;
+            margin: 5% 10%;
+        }
+        .arrow{
+            height: 2rem;
+            background: url("img/arrow.png") no-repeat top right;
+            background-size: auto 100%;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            line-height: 2rem;
+            color: #fff;
+            font-size: 2rem;
+            padding-right: 10%;
+        }
+        .footer{
+            color: rgba(0,0,0,0.8);
+            font-size: 1.2rem;
+            padding: 8% 0 4% 0;
+            text-align: center;
+        }
+        .clear:after{
+            clear: both;
+            content: '';
+            display: block;
+        }
+        @media screen and (min-width:320px){
+            html{
+                font-size:75%;
+            }
+        }
+        @media screen and (min-width:360px){
+            html{
+                font-size:84.375%;
+            }
+        }
+        @media screen and (min-width:480px){
+            html{
+                font-size:112.5%;
+            }
+        }
+
+        @media screen and (min-width:540px){
+            html{
+                font-size:126.56%;
+            }
+        }
+        @media screen and (min-width:640px){
+            html{
+                font-size:150%;
+            }
+        }
+        @media screen and (min-width:720px){
+            html{
+                font-size:168.75%;
+            }
+        }
+
+        @media screen and (min-width:960px){
+            html{
+                font-size:225%;
+            }
+        }
+
+        @media screen and (min-width:1024px){
+            html{
+                font-size:240%;
+            }
+        }
+        /**1080**/
+        @media screen and (min-width:1080px){
+            html{
+                font-size:253.125%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <div class="logo"></div>
+        <div class="gird android-gird clear">
+            <div class="android-icon"></div>
+            <div class="info">
+                <div class="pmt">
+                    <div class="arrow" id="yyb">应用宝</div>
+                </div>
+                <div class="pmt">
+                    <div class="arrow" id="wdj">豌豆荚</div>
+                </div>
+                <div class="pmt">
+                    <div class="arrow" id="qt">其他</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="gird ios-gird clear">
+            <div class="ios-icon"></div>
+            <div class="arrow" id="ios">IOS市场</div>
+        </div>
+        <div class="footer">北京四海唯家科技有限公司</div>
+    </div>
+</div>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#yyb').on('click',function(){
+            window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.weijia.fruitbox#opened';
+        });
+        $('#wdj').on('click',function(){
+            window.location.href = 'http://www.wandoujia.com/apps/com.weijia.fruitbox?utm_source=link';
+        });
+        $('#ios').on('click',function(){
+//            window.location = 'https://itunes.apple.com/cn/app/guo-bao/id1111805482?l=en&mt=8';
+//            window.location.href = 'https://itunes.apple.com/cn/app/guo-bao/id1111805482?l=en&mt=8'
+            window.location.href = 'download.html';
+        });
+        $('#qt').on('click',function(){
+            window.location.href = 'download.html';
+        });
+    });
+
+</script>
+</body>
+</html>

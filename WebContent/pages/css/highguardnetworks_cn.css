@@ -1,0 +1,161 @@
+
+/* sboggan, Aug - Oct 02 */
+
+
+
+/*standard elements */
+
+    body {font-size: 12px; font-family: "宋体", Verdana,Helvetica,Sans-serif; background:#E9F7F8; margin:0;}
+
+    p {font-size: 12px; font-family: "宋体", Verdana,Helvetica,Sans-serif;}
+
+    h1{font-size: 15px; font-family: "宋体", Verdana,Helvetica,Sans-serif; color: #191970; margin-bottom:-.5em;}
+
+    h2{font-size: 15px; font-family: "宋体",Verdana,Helvetica,Sans-serif;}    
+    h2.simple{font-size: 15px; font-family:"宋体",Verdana,Helvetica,Sans-serif; margin-bottom:-.5em; margin:5px;} 
+    h3{font-size: 13.5px; font-family:"宋体",Verdana,Helvetica,Sans-serif; margin-bottom:-.75em;} 
+
+    ul{font-size: 12px; font-family:"宋体",Verdana,Helvetica,Sans-serif;}
+
+    li{font-size: 12px; font-family:"宋体",Verdana,Helvetica,Sans-serif; line-height:120%;}
+
+    address{font-size: 10px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; font-style:normal; color: black;} 
+
+    hr {text-align:left; margin-top:-7px;  width:90%; color:#787E98;}
+
+    
+
+/* table elements */    
+
+    table{padding:0; vertical-align:top;}
+    th{font-weight:bold; font-family:"宋体",Verdana,Helvetica,Sans-serif; background:#70CCD1; color: black; font-size: 12px; border:none;}                
+    td{font-size: 12px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif;}
+    .simpleLayout{border-bottom: thin solid black; color: white;}       
+    .banneropen{font-weight:bold; font-family:"宋体",Verdana,Helvetica,Sans-serif; background:#99a1bf; text-align:left; border-bottom: thin solid slategray;} 
+        /* banneropen is the expanded tablehead */      
+
+    .bannerclosed{font-weight:bold; font-family:"宋体",Verdana,Helvetica,Sans-serif; color:black; background:#ccd0e1; text-align:left;}
+        /* bannerclosed is the collapsed tablehead */           
+
+    .bannericon{cursor:pointer; cursor:hand;}         
+    .smallgrid{font-size: 11px; font-family:"宋体",Verdana,Helvetica,Sans-serif; text-align:center; background:#f2f4ff;}  /* used in tables, such as policy grid */
+    .smallgridalt{font-size: 11px; font-family:"宋体",Verdana,Helvetica,Sans-serif; text-align:center; background:#ccd0e1;}  /* used in tables, such as policy grid */
+    .smallgridselected{font-size: 11px; font-family:"宋体",Verdana,Helvetica,Sans-serif; text-align:center; background:#97aaff;}  /* used in tables, such as policy grid */
+
+    .spacer {height: 10;}       /* used in table rows */    
+
+    .doexpand {font-size: 10px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; margin-top:0em;}  /* "expand/collapse all" text */    
+
+     .iconText{vertical-align:top; color:white; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; font-size: 11px; margin-bottom:2px; text-decoration:none;}    
+
+     .iconTextDisabled{vertical-align:top; color:#cacaca; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; font-size: 11px; margin-bottom:2px; text-decoration:none;}
+
+    .border{border-style: solid none none none; border-top-color: #99a1bf; border-left-color: #99a1bf; border-top-width:2px;}   
+
+    .noborder{border:none;}                     
+
+    .dotted{border-style: dotted none none none; border-top-color: #99a1bf; border-top-width:2px; vertical-align:bottom;}                           
+
+
+/* left navbar styles */
+
+    .navtext{font-size:11px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; text-decoration:none; cursor: pointer; margin-top:0px; margin-bottom:-4px;}
+
+    .navtext a:hover {background-color: #cacaca; cursor: pointer; color:#1e90ff;} 
+
+    .navhead{font-size:11px; font-weight:bold; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; padding-left:6px; margin-bottom:0em;}
+
+
+
+/* tab styles */
+
+    div.tabArea {font-size: 12px; font-weight: bold; font-family: "宋体",Tahoma,Verdana,Helvetica,sans-serif; height:20px;}
+
+    a.tab {background-color: #ccd0e1; padding: 6px 10px 6px 10px; text-decoration: none; color: #787E98; height:25px; width:110px; text-align:center;}
+
+    a.tab, a.tab:visited {color: #808080;}
+
+    a.tab:hover {background-color: #97aaff; color: black;}
+
+    a.tab.activeTab, a.tab.activeTab:hover, a.tab.activeTab:visited {background-color: #99a1bf; color: #000000;}
+
+
+
+/* form elements */
+
+    select{font-size: 12px;font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; color:black;}
+
+    input{font-size: 12px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; color:black;}
+
+    .longfield{width: 275px;}
+
+
+
+/* misc custom classes */   
+
+    .tabactive{bgcolor:#87ceeb; text-align:center; vertical-align:middle; font-weight:bold; cursor: pointer; color:#ffffff;}
+
+    .tabinactive{bgcolor:#87ceeb; text-align:center; vertical-align:middle; font-weight:bold; color:#ffffff;}   
+
+    .tablink{text-decoration:none;} /* tab styles used for tabbed pages */
+
+    
+
+    .header{font-size: 11px; font-family:"宋体",Verdana,Helvetica,Sans-serif; vertical-align:text-bottom; cursor: pointer; font-weight:bold; text-decoration:none;}   /* navbar links: home, help, logout */
+
+    .separator{background:#f5f5f5; text-align:left; vertical-align:middle; border-bottom: thin solid lightgray; font-weight:bold;} 
+
+        /* separator is used like an HR */
+
+    .reqfield{margin-top:-8px; vertical-align:middle;} 
+
+
+    /* general */
+
+    .bold{font-weight:bold;}
+
+    .subhead{font-weight:bold;}    
+
+    .center{text-align:center;}  /* used in tables */
+
+    .right{text-align:right;}   /* used in tables */    
+
+    .gray{bgcolor: #d7d7d7; text-align:center; vertical-align:middle;}
+
+    .helptext{font-size: 11px; color:gray; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif;} /* brief hints*/
+
+    .bodytop{padding-top:6px;padding-left:8px;} /* used for first heading in body pages */
+
+    .footer{font-size:9px;font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif;}    /* used for page footer */
+
+        .monospace{font-size:11px; font-family: "宋体",Lucida Console,Courier New, Courier,Monospaced; margin-left:20px}
+
+        .info{font-size:11px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; color: black; font-weight:bold;}
+
+        .warning{font-size:11px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; color: black; font-weight:bold;}                 
+        .error{font-size:11px; font-family:"宋体",Tahoma,Verdana,Helvetica,Sans-serif; color: #dc143c; font-weight:bold;} 
+
+    .homehead{color:white; font-weight:bold;}
+
+    .hometext{font-family:"宋体",Tahoma; margin-top:8px; margin-bottom:-10px;}
+
+/*button pseudo classes, not currently used */  
+
+    .button a:hover {background-color: #99aabf; border-top: 2px #31557f solid; border-left: 2px #31557f solid; border-bottom: 2px #cce3ff solid; border-right: 2px #cce3ff solid;}
+
+    .button { font-weight: bold; text-align: center; margin-bottom: 3px; margin-top: 3px;}
+
+    .button a {padding: 4px; text-decoration: none; width: 98%; display: block; color: #224059; background-color: #b5c9e2; border-top: 2px #cce3ff solid; border-left: 2px #cce3ff solid; border-bottom: 2px #31557f solid; border-right: 2px #31557f solid;}
+
+    
+
+/*pseudo classes */
+    a:hover{color: #1e90ff;} 
+    a:link{color: MidnightBlue;}
+    a:visited{color: DarkBlue;}
+
+/* subclasses for links on home page */
+    .homelink a:hover{color: #1e90ff; text-decoration:underline;} 
+    .homelink a:link{color: MidnightBlue; text-decoration:none;}
+
+

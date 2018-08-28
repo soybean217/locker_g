@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<config>
+	<client>
+	   <key>timeout</key>
+	   <type>string</type>
+	   <value>120</value>
+	</client>
+	<client>
+	   <key>timeshow</key>
+	   <type>string</type>
+	   <value>10</value>
+	</client>
+	<client>
+	   <key>cleanshow</key>
+	   <type>string</type>
+	   <value>30</value>
+	</client>
+	<client>
+	   <key>delaytime</key>
+	   <type>string</type>
+	   <value>2</value>
+	</client>
+	<client>
+	   <key>range</key>
+	   <type>string</type>
+	   <value>1000</value>
+	</client>
+</config>

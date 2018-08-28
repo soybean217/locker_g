@@ -1,0 +1,469 @@
+.datagrid TABLE THEAD TR TH {
+	POSITION: relative;
+	TOP: expression(this.parentNode.parentNode.parentNode.parentNode.scrollTop-1
+		+ "px");
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 11px;
+	font-style: normal;
+	line-height: 150%;
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #70CCD1;
+	text-align: center;
+	font-weight: bolder;
+	BORDER-RIGHT: #3EB7BD 1px solid;
+	BORDER-BOTTOM: #3EB7BD 1px solid;
+	PADDING-LEFT: 5px;
+	PADDING-TOP: 5px
+}
+
+TD.LightLogLine {
+	BORDER-BOTTOM: #888888 1px solid;
+	BORDER-RIGHT: #999999 1px solid;
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	FONT-SIZE: 11px;
+	BACKGROUND: #ffffff;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	FONT-FAMILY: Verdana, Helvetica, Sans-serif
+}
+
+TD.DarkLogLine {
+	BORDER-BOTTOM: #888888 1px solid;
+	BORDER-RIGHT: #999999 1px solid;
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	FONT-SIZE: 11px;
+	BACKGROUND: #f5f5f5;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	FONT-FAMILY: Verdana, Helvetica, Sans-serif
+}
+
+TD.noborderLightLogLine {
+	BORDER-BOTTOM: #888888 0px solid;
+	BORDER-RIGHT: #999999 0px solid;
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	FONT-SIZE: 11px;
+	BACKGROUND: #ffffff;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	FONT-FAMILY: Verdana, Helvetica, Sans-serif
+}
+
+TD.noborderDarkLogLine {
+	BORDER-BOTTOM: #888888 0px solid;
+	BORDER-RIGHT: #999999 0px solid;
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	FONT-SIZE: 11px;
+	BACKGROUND: #f5f5f5;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	FONT-FAMILY: Verdana, Helvetica, Sans-serif
+}
+
+TD.nobottomborderLightLogLine {
+	BORDER-BOTTOM: #888888 0px solid;
+	BORDER-RIGHT: #999999 1px solid;
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	FONT-SIZE: 11px;
+	BACKGROUND: #ffffff;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	FONT-FAMILY: Verdana, Helvetica, Sans-serif
+}
+
+TD.nobottomborderDarkLogLine {
+	BORDER-BOTTOM: #888888 0px solid;
+	BORDER-RIGHT: #999999 1px solid;
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	FONT-SIZE: 11px;
+	BACKGROUND: #f5f5f5;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	FONT-FAMILY: Verdana, Helvetica, Sans-serif
+}
+
+/*---------------------------------------------------------------------body,form元素的样弄1??7-------------------------------------------------------------*/
+body {
+	SCROLLBAR-FACE-COLOR: #319499;
+	SCROLLBAR-SHADOW-COLOR: #ffffff;
+	SCROLLBAR-3DLIGHT-COLOR: #319499;
+	SCROLLBAR-ARROW-COLOR: #ffffff;
+	SCROLLBAR-trACK-COLOR: #51C1C8;
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+	background-color: #E9F7F8;
+}
+
+.GrooveArea {
+	border: 2px inset;
+}
+
+.LightEntryTr {
+	font-family: "宋体", Arial, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+	text-decoration: none;
+	text-align: center;
+}
+
+.DarkEntryTr {
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+	text-decoration: none;
+	background-color: #C7EBED;
+	text-align: center;
+}
+
+.FieldsetBorder {
+	border: 1px double #86D5D9;
+}
+
+.LegendTitle {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 150%;
+	font-weight: bolder;
+	color: #F48C05;
+	text-decoration: none;
+}
+
+.ButtonStyle {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #ffffff;
+	text-decoration: none;
+	background-color: #36A6AB;
+	cursor: hand;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #70CCD1;
+	border-right-color: #298185;
+	border-bottom-color: #298185;
+	border-left-color: #70CCD1;
+}
+
+.FixButtonStyle {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 150%;
+	color: #ffffff;
+	text-decoration: none;
+	background-color: #36A6AB;
+	cursor: hand;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #70CCD1;
+	border-right-color: #298185;
+	border-bottom-color: #298185;
+	border-left-color: #70CCD1;
+	width: 80px;
+}
+
+.100PercentInput {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+	text-decoration: none;
+	width: 100%;
+}
+
+.ThirdLevelMenuBottomLine {
+	background-color: #F48C05;
+	height: 4px;
+}
+
+.WhiteBgGreenBorder {
+	background-color: #FFFFFF;
+	border: 1px solid #c4eae1;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+	text-decoration: none;
+}
+
+.BackgroundColorDot {
+	background-color: #E9F7F8;
+	height: 1px;
+	width: 1px;
+}
+
+.Hand {
+	cursor: hand;
+}
+
+.TableTitle {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 11px;
+	font-style: normal;
+	line-height: 150%;
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #70CCD1;
+	text-align: center;
+	font-weight: bolder;
+}
+
+/*------------------------------------------------------------------几种常用的字体的样式----------------------------------------------------------------*/
+.NormalText {
+    font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+    font-size: 12px;
+    font-style: normal;
+    line-height: 150%;
+    color: #666666;
+    text-decoration: none;
+}
+
+.WhiteText {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 9px;
+	font-style: normal;
+	line-height: 150%;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.TipWord {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 15px;
+	font-style: normal;
+	line-height: 150%;
+	font-weight: bolder;
+	color: #F48C05;
+	text-decoration: none;
+}
+
+.GrayText {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #999999;
+	text-decoration: none;
+}
+
+.GreenText {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 11px;
+	font-style: normal;
+	line-height: 150%;
+	color: #31969B;
+	text-decoration: none;
+}
+
+.OKText {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 15px;
+	font-style: normal;
+	line-height: 150%;
+	font-weight: bolder;
+	color: #31969B;
+	text-decoration: none;
+}
+.ERRText {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 15px;
+	font-style: normal;
+	line-height: 150%;
+	font-weight: bolder;
+	color: red;
+	text-decoration: none;
+}
+
+/*-------------------------------------------------------------第一级菜单条的两种样弄1??7-----------------------------------------------------------------*/
+.WaittingFirstLevelMenuTitle {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 150%;
+	color: #ffffff;
+	text-decoration: none;
+	background-color: #319499;
+	height: 20px;
+	width: 100%;
+	cursor: hand;
+	font-weight: bolder;
+}
+
+.ActiveFirstLevelMenuTitle {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 11px;
+	font-style: normal;
+	line-height: 150%;
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #F48C05;
+	height: 20px;
+	width: 100%;
+	cursor: hand;
+}
+
+/*------------------------------------------------------------伸展收缩的二级菜单的盒子的两种样弄1??7---------------------------------------------------*/
+.WaittingSecondLevelMenuBox {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	text-decoration: none;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #319499;
+	border-bottom-color: #319499;
+	border-left-color: #319499;
+	background-color: #ffffff;
+}
+
+.ActiveSecondLevelMenuBox {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	text-decoration: none;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #F48C05;
+	border-bottom-color: #F48C05;
+	border-left-color: #F48C05;
+	background-color: #ffffff;
+}
+
+/*-----------------------------------------------------------------------菜单分割线的两种样式--------------------------------------------------------*/
+.WaittingFenceLine {
+	background-color: #93DADD;
+	height: 1px;
+}
+
+.ActiveFenceLine {
+	height: 1px;
+	background-color: #F48C05;
+}
+
+/*-----------------------------------------------------------------------两种链接的样弄1??7---------------------------------------------------------------*/
+a:link {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+	text-decoration: underline;
+}
+
+a:visited {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+	text-decoration: underline;
+}
+
+a:hover {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 150%;
+	color: #000000;
+	text-decoration: underline;
+}
+
+a.ActiveLink:link {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-weight: bolder;
+	font-style: normal;
+	line-height: 150%;
+	color: #F48C05;
+	text-decoration: underline;
+}
+
+a.ActiveLink:visited {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-weight: bolder;
+	font-style: normal;
+	line-height: 150%;
+	color: #F48C05;
+	text-decoration: underline;
+}
+
+a.ActiveLink:hover {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	font-weight: bolder;
+	font-style: normal;
+	line-height: 150%;
+	color: #F48C05;
+	text-decoration: none;
+}
+
+/*----------------------------------------------------------右边上面出现的第三级菜单按钮的样弄1??7--------------------------------------------------*/
+.ActiveThirdLevelMenuButton {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	line-height: 150%;
+	font-weight: bolder;
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #F48C05;
+	text-align: center;
+	height: 24px;
+	cursor: hand;
+}
+
+.WaittingThirdLevelMenuButton {
+	font-family: "宋体", "Arial", "Helvetica", "sans-serif";
+	font-size: 11px;
+	line-height: 150%;
+	font-weight: bolder;
+	color: #ffffff;
+	text-decoration: none;
+	background-color: #319499;
+	text-align: center;
+	height: 22px;
+	cursor: hand;
+}
+
+.waittingLink {
+	font-family: "宋体", "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 150%;
+	color: #666666;
+}

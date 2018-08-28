@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+     http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    version="2.5">
+    <tlib-version>1.0</tlib-version>
+    <short-name>myfn</short-name>
+    <uri>http://www.tldExample.cn/test/functions</uri>
+    <function>
+      <name>getSelectValue</name>
+      <function-class>com.highguard.Wisdom.struts.common.ComangerDic</function-class>
+      <function-signature>java.lang.String getSelectValue(java.lang.String,java.lang.String)</function-signature>
+   </function>
+       <function>
+      <name>getName</name>
+      <function-class>com.highguard.Wisdom.struts.common.ComangerDic</function-class>
+      <function-signature>java.lang.String getName()</function-signature>
+   </function>
+</taglib>

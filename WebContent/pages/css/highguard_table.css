@@ -1,0 +1,59 @@
+body {
+	scrollbar-darkShadow-color:#1873AA;
+	scrollbar-3d-light-color:#59B7D7;
+	scrollbar-arrow-color:black;
+	scrollbar-base-color:#1873AA;
+	scrollbar-face-color:#CDDFEA;
+	scrollbar-highlight-color:white;
+	scrollbar-shadow-color:#EFEFFF;
+	scrollbar-track-color:#EEEEEE;
+}
+.tip {
+	font-family: "微软雅黑", "宋体";
+	font-size: 16px;
+	font-weight: bold;
+	color: #F30;
+}
+
+.formTitleBar{
+	BORDER: #FFFFFF 1px solid;
+	PADDING-LEFT: 5px;
+	FONT-SIZE: 12px;
+	COLOR: #000000;
+	font-weight: bold;
+	BACKGROUND-COLOR: #eaeff3;
+	TEXT-ALIGN: center;
+	height:25px;
+	background-image:url(../images/td_titlebg.jpg);
+	background-repeat: repeat-x;
+}
+
+.formTitle1 {
+	font-family: "微软雅黑", "黑体";
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+.formTitle2 {
+	font-family: "微软雅黑", "黑体";
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.trFirst {
+	BACKGROUND-COLOR: #EAF5FC;
+	margin: 0;
+	padding: 0;
+}
+
+.trSecond {
+	BORDER-BOTTOM: #e0e0e0 1px solid;
+	border: #e0e0e0 1px solid;
+	margin: 0;
+	padding: 0;
+}
+
+.formField1{
+	height: 20px;
+	width: 200px;	
+}

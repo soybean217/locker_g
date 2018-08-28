@@ -1,0 +1,19 @@
+@CHARSET "GBK";
+*{
+padding: 0px;
+margin: 0px;
+font-size:12px;
+}
+#tab a
+{
+	color:#252C32;
+	display:block;
+	cursor:pointer;
+	text-decoration:none;
+	line-height:24px;
+	border:0px;
+}
+#tab div
+{
+	display:block;
+}

@@ -1,0 +1,169 @@
+
+body {
+	margin: 0px;
+	text-align:center;
+	background:url('bj.jpg') repeat-x;; font-style:normal; font-variant:normal; font-weight:normal; line-height:20px; font-size:12px; font-family:Arial, 宋体
+}
+*{ padding:0; margin:0;}
+a { color:#000; text-decoration:none;}
+ul,li{ list-style:none;}
+img { border:none; }
+.left { text-align:left; }
+.right { text-align:right; }
+.center { text-align:center; }
+.clearboth { clear:both; }
+.clearleft { clear:left; }
+.clearright { clear:right; }
+.page{ text-align:center; width:700px; float:left; padding:20px 0;}
+.page a{ background:#b3b3b3; color:#fff; margin:0 2px; padding:2px 8px;}
+.page a.dq,.page a:hover{ background:#c30;}
+.fd_right{ float:right;}
+.fd_left{ float:left; margin-right:10px;}
+/*共用部分结束*/
+
+.wrapper{ width:1000px; margin:0 auto; text-align:left; overflow:hidden; background:#fff;}
+
+/*头部header部分*/
+.header{width:1000px; float:left;}
+.header .logo{ float:left; width:772px; height:70px; background:url('logo.jpg') no-repeat; margin-top:20px; margin-left:20px}
+.lag{ float:left; margin-left:24px; width:168px; margin-top:10px} 
+.header .logo h1{ display:none;}
+.header .top_right{ float:right;}
+.header .top_right a{ padding:0 6px;}
+.header .nav { float:left; font-weight:bold; color:#000; height:39px; line-height:39px; width:1000px; background:url('dh_08.jpg'); }
+.header .nav ul{ background:url('nav_right.jpg') no-repeat right; height:39px}
+.header .nav ul li{ float:left;}
+.header .nav ul li a{ color:#fff; display:block;font-family:"新宋体"; font-size:14px; width:142.8px; text-align:center}
+.header .nav ul li a:hover{color:#fc0; background:#990000;}
+
+#menu2 {}
+#menu2 ul {float:left;}
+#menu2 li { position: relative;}
+#menu2 li a { float:left;}
+#menu2 ul ul { display:none;  position:absolute; top:39px;  left:0; }
+#menu2 ul ul li{ padding:0px;position:relative;z-index:9999}
+#menu2 ul ul li a{background:#c70f1e; border-bottom:1px solid #d16268; display:block; overflow:hidden; white-space:nowrap; width:142px; padding:0; text-align:center;}
+
+/*.banner{ width:1000px; height:311px; float:left;}*/
+.banner{ width:1000px; height:311px; float:left;   position:relative; overflow:hidden;}
+.banner .campaign_item img{ width:1000px; height:311px;}
+#campaign_slide_navigation{ text-align:center; position:absolute; bottom:10px; right:10px; z-index:10;}
+#campaign_slide_navigation li{ float:left; margin:0 2px; cursor:pointer;}
+#campaign_slide_navigation li.campaign_navi_item{ background:url('pt.png') no-repeat; width:11px; height:11px}
+#campaign_slide_navigation li.activeSlide{ background:url('ts.png') no-repeat; width:11px; height:11px}
+
+
+/*头部header部分结束*/
+
+/*首页中间内容部分开始*/
+.main{ width:1000px; padding-top:15px; float:left; background:url('mainbj.jpg') repeat-x; clear:both}
+
+.main .news{ width:216px; float:left;}
+.main .news .title{ width:216px; height:36px; background:url('xw.jpg') no-repeat; }
+.main .news .title span{float:left; padding-left:25px; line-height:36px; font-size:14px; font-weight:bold; color:#FFF}
+.main .news .title a{float:right; margin-top:8px; margin-right:10px;}
+.main .news .intro{ width:216px; background:#e7e8e7; height:200px;}
+.main .news .intro ul{ width:200px; margin:0 auto;}
+.main .news .intro ul li{ background:url('a.jpg') no-repeat left; padding-left:0px; line-height:27px; border-bottom:1px dashed #CCC;}
+
+.main .about{ width:726px; float:left; margin-left:21px;}
+.main .about .title{width:726px; height:34px; background:#c0c0c0; float:left}
+.main .about .title span{float:left; padding-left:25px; line-height:34px; font-size:14px; font-weight:bold; color:#FFF; background:url('pic2.jpg') no-repeat; width:196px}
+.main .about .title a{float:right; margin-top:8px; margin-right:10px;}
+.main .about .intro{width:726px; background:#e7e8e7; float:left; height:200px;}
+.main .about .intro .left{width:153px; float:left;}
+.main .about .intro .left p{ margin-top:12px; margin-left:10px;}
+.main .about .intro .ri{width:373px;float:left;}
+.main .about .intro .ri .intros{width:353px; margin:0 auto; margin-top:10px;}
+
+.main .mainright{ width:216px; float:left;margin-left:21px;}
+.main .mainright .title{ width:216px; height:36px; background:url('xw.jpg') no-repeat; }
+.main .mainright .title span{float:left; padding-left:25px; line-height:36px; font-size:14px; font-weight:bold; color:#FFF}
+.main .mainright .title a{float:right; margin-top:8px; margin-right:10px;}
+.main .mainright .intro{ width:216px; background:#e7e8e7; height:200px;}
+.main .mainright .intro ul{ width:200px; margin:0 auto;}
+
+.main .mainbottom{ width:1000px;margin-top:15px; float:left}
+.main .mainbottom .title{ width:1000px; height:34; background:#e8e9e8; float:left}
+.main .mainbottom .title span{float:left; padding-left:25px; line-height:35px; font-size:14px; font-weight:bold; color:#FFF; background:url('pic.jpg') no-repeat; width:198px}
+.main .mainbottom .title a{float:right; margin-top:9px; margin-right:10px;}
+.main .mainbottom .intro{border:solid 1px #CCCCCC; width:978px; height:204px;border-top:none; float:left; padding-left:20px;}
+.main .mainbottom .intro img{ width:150px; height:168px; margin-left:20px; float:left; margin-top:10px;}
+
+#demo {overflow:hidden; width:960px; margin-right:10px;}
+#indemo {float: left; width: 800%;}
+#demo1,#demo2 { float:left}
+#demo ul li{ float:left; text-align:center; width:178px;}
+/*首页中间内容部分结束*/
+
+/*内页中间内容部分开始*/
+.ny_bg{ background:url('mainbj.jpg') repeat-x;}
+/*左边*/
+.sidebar{ width:200px; float:left;}
+.sidebar .title{ font-size:18px; padding-left:10px; border-bottom:solid 1px #dadada;}
+.sidebar .intro{ padding:6px;}
+.sidebar .intro ul li{ border-bottom:dashed 1px #ccc; padding-left:2px; line-height:25px;}
+.sidebar .intro ul li a:hover{ color:#c30;}
+#menu { float:left; line-height:30px;}
+#menu ul {float:left;}
+#menu li { float:left; width:180px;  position: relative;}
+#menu li a { display: block; float:left; padding-left:15px; width:165px;}
+#menu li a:hover { color: #da1a00; }
+#menu ul ul { display: none;  position: absolute; top: 0;  left:190px; }
+#menu ul ul li{ background:#0056b6; width:200px; padding:0px; border-bottom:solid 1px #dadada;}
+#menu ul ul li a{ padding:0px 10px; width:200px; overflow:hidden; white-space:nowrap; color:#fff;}
+#menu ul ul li a:hover{ color:#f90;}
+
+/*右边*/
+.content{ width:755px; float:right;} 
+.content .title{ border-bottom:solid 1px #dadada; padding-left:10px; font-size:18px;}
+.content .intro{ padding:15px;}
+.content .intro p{ margin-bottom:6px; line-height:25px;}
+
+.content .product_list{ padding:15px 0;}
+.content .product_list ul li{ width:154px; height:150px; overflow:hidden; float:left; margin:0 17px 20px; text-align:center;}
+.content .product_list ul li img{ width:150px; height:120px; border:solid 1px #dadada; padding:1px;}
+.content .product_list ul li span{ display:block;}
+
+.content .product_show{ padding:15px;}
+.content .product_show ul li{ float:left; margin-bottom:20px; width:640px;}
+.content .product_show ul li.pic{ text-align:center; border-bottom:dashed 1px #ccc;}
+.content .product_show ul li.pic span{ display:block; font-weight:bold;}
+.content .product_show ul li.nr p.jc{font-weight:bold;}
+.content .product_show ul li img{ width:367px; height:400px;}
+
+.content .news_list{ padding:14px;}
+.content .news_list ul li{ width:700px; float:left; margin-bottom:16px; border-bottom:dashed 1px #ccc; padding-bottom:2px; padding-left:22px;}
+.content .news_list ul li span{ color:#1a5ea5; float:right; padding-right:10px;} 
+.content .news_list ul li a:hover{ color:#0b8bd2;}
+
+.content .news_show{ padding:14px;}
+.content .news_show ul li.bt{ font-size:14px; font-weight:bold; text-align:center;}
+.content .news_show ul li.date{ text-align:center; margin-bottom:10px; border-bottom:dashed 1px #999;}
+.content .news_show ul li.nr{ padding:8px 18px;}
+.content .news_show ul li.nr p{ margin-bottom:10px; line-height:26px;}
+.content .news_show ul li.back{ text-align:center;}
+.content .news_show ul li.back a:hover{ color:#ec6100;}
+
+.content .feedback{ padding:15px;}
+.content .feedback table{}
+.content .feedback table thead{ font-weight:bold;}
+.content .feedback table tr td{ padding:4px;}
+.content .feedback table tr td a:hover{ color:#c30;}
+.content .feedback table input, .content .feedback table textarea{ border:solid 1px #ccc;}
+.content .feedback table input.button{background:#256AB6; color:#fff; cursor:pointer; padding:2px 4px;}
+
+.content .job{ padding:15px;}
+.content .job table{ background:#EAEAEA; margin-bottom:20px;}
+.content .job table thead{ font-weight:bold;}
+.content .job table tr td{ background:#fff; padding:4px;}
+.content .job table tr td a:hover{ color:#c30;}
+/*内页中间内容部分结束*/
+#TTel
+{
+font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin-top: 10px;
+}
+
+/*脚部分开始*/
+.footer{ text-align:center; width:100%; background:url('footer_10.jpg') repeat-x top; min-height:25px; float:left; font-size:12px; color:#000000; margin-top:15px;margin-left:0px; padding-left:0;  padding-top:10px; padding-bottom:10px}
+/*脚部分结束*/

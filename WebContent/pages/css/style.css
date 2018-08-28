@@ -1,0 +1,169 @@
+
+/*以html元素或标记开头的，在引用该css的文档中若使用该标记，则自动应用到该html标记中*/
+A:link {
+	COLOR: #003366; TEXT-DECORATION: none;font: 11px Arial, Tahoma ;
+}
+A:visited {
+	COLOR: #003366; TEXT-DECORATION: none;font: 11px Arial, Tahoma ;
+}
+A:hover {
+	font: 11px Arial, Tahoma; BORDER-BOTTOM: #666666 1px dotted;
+}
+/*以.开头的样式，后面跟着一个元素的class，*/
+.sltwidth
+{
+		width: 150px;
+} 
+
+img             {border: 0;}
+hr,.bluehr 	    {noshade;height:1;color:"#527ABD"}
+/*设置文档的背景颜色*/
+body            {background-color:#ffffff}
+.maintable		{ background-color: #EDECEB }
+table			{ 
+	font: 12px Tahoma, Verdana;
+				color: #000000;
+				border-width:1px;	
+				border-collapse:collapse;
+				border-color:#C2D5FC;							
+				width:100%;								
+				}
+td              {height:24px;border-color:#9797C0; }
+.tableborder	{ background: #D6E0EF; border: 1px solid #808080 } 
+.header 		{ font: 11px Tahoma, Verdana; color: #FFFFFF; font-weight: bold; background-color: #698CC3}
+.header2 		{ font: 11px Tahoma, Verdana; color: #FFFFFF; font-weight: bold; background-color: #98B0D6}
+.smalltxt		{ font: 11px Arial, Tahoma }
+.bold			{ font-weight: bold }
+th,.category	{ font: 11px Arial, Tahoma;color: #000000; background-color: #EFEFEF }
+.altbg1			{ background: #F8F8F8 }
+.altbg2			{ background: #FFFFFF }
+.nav			{ font: 12px Tahoma, Verdana; color: #000000; font-weight: bold }
+.even           { font: 12px Tahoma, Verdana; color: #000000; background-color: #BDD0EE;border-color:#808080}
+.exportlinks,.export excel
+                {font: 11px Arial, Tahoma; color: #000000; background-color: #EFEFEF;border-color:#808080;border-bottom-style:solid; border-bottom-width:1px;border:1 pt}
+.pagebanner
+                {font: 11px Arial, Tahoma; color: #000000; background-color: #EFEFEF;width:30%;float:left;border-left-style:solid; border-bottom-width:1px;border:1 pt}
+.pagelinks
+                {font: 11px Arial, Tahoma; color: #000000; background-color: #EFEFEF;width:30%;float:right;border-right-style:solid; border-bottom-width:1px;border:1 pt}
+
+ .topshowlist
+{
+	font: 14px Tahoma, Verdana;
+}
+
+
+/*===== 登陆|搜索 =====*/
+form			{ margin: 0; padding: 0}
+select			{ font: 11px Arial, Tahoma; color: #000000; font-weight: normal; background-color: #F8F8F8 }
+
+/*以#打头的样式，#后面跟的是一个元素的id，定义所有使用该id的元素的样式*/
+#usrlogin       {margin-top: 5px;height: 28px;clear: both;text-align:center;}
+#usrlogin .loginform 
+                {float: left;padding: 4px;padding-left: 16px;font-size:12px;text-align: left;}
+
+#usrlogin .loginform input  {border: solid 1px #888888;font-size: 12px;}
+#usrlogin .radio            {float: left;text-align: left;width: 250px;padding-top: 4px;}
+#usrlogin .loginadv 		{float: left;padding: 4px;}
+.but            
+{border-bottom:1px solid #808080;
+font-family:Tahoma;
+font-size:11px;
+color:#FFFFFF;
+background-color:#7b9ebd;
+border-left-style:solid;
+border-left-width:1px;
+border-right-style:solid;
+border-right-width:1px;}
+
+.btn {
+	border-right: #7b9ebd 1px solid;
+	padding-right: 2px;
+	border-top: #7b9ebd 1px solid;
+	padding-left: 2px;
+	font-size: 12px;
+	filter: progid: dximagetransform. microsoft.
+		gradient(gradienttype = 0, startcolorstr = #ffffff, endcolorstr =
+		#cecfde);
+	border-left: #7b9ebd 1px solid;
+	cursor: hand;
+	color: black;
+	padding-top: 2px;
+	border-bottom: #7b9ebd 1px solid
+}
+
+
+
+
+	.editor
+	{
+		font-family: verdana;
+		font-size: 9pt;
+		border: gray 1px solid;
+	}
+	.editor_active
+	{
+		font-family: verdana;
+		font-size: 9pt;
+		border: dimgray 0px solid;
+		vertical-align:center;
+	}
+    .leftbutton
+	{
+		font-family: webdings;
+		border-left:1px solid gray;
+		font-size: 9pt;
+		cursor: hand;
+		width: 18px;
+		height:18px;
+		text-align:center;
+		vertical-align:center;
+		background-color: white;
+	}
+
+
+.topshowlist
+{
+	font: 12px Tahoma, Verdana;
+}
+.sltwidth
+{
+		width: 150px;
+}
+.sltwidthshort
+{
+		width: 125px;
+}
+.tablecellcolor {
+		background-color: #BDD0EE;
+				}
+.tablecellcolorbright {
+		background-color: #BDD0EE;
+				}
+.title{
+	font-size:14px;
+	color:#316AC5;
+	float:center;
+	text-align:center;
+	font-weight:bold;
+	width:400px;
+	height:24px;
+	}
+	
+.subtitle{
+	font-size:12px;
+	text-align:left;
+	line-height:20px;
+	color: #7b9ebd;
+}
+#uploadFile{
+	  	font-size:13px;
+	  	position:absolute;
+	  	width:300px;
+	  }
+#file{
+  	  	margin-left:0;
+  	  	margin-top:0;
+  	  	font-size:13px;
+  	  	width:196px;
+  	  	height:22px;
+  	  }

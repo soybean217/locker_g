@@ -1,0 +1,257 @@
+body{
+    font-family: arial, 'Microsoft Yahei', 'Hiragino Sans GB', sans-serif !important;
+    width: 100%;
+    height: 100%;
+    background:url(../images/suc-bg.jpg) no-repeat;
+    background-size:cover;
+    margin: 0;
+    padding: 0;
+    overflow-y:auto ;
+}
+input,textarea {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    background: none;
+    -webkit-appearance: none;
+}
+input.input-text, select, textarea {
+    background: #fff;
+    border: 1px solid #ddd;
+}
+/*** 弹框 ***/
+.dialog {
+    width: 300px;
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    margin-left: -150px;
+    margin-bottom: 200px;
+    z-index: 1001;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+
+.dialog-tips {
+    background-color: rgba(0, 0, 0, .8);
+    border: 0 none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.dialog-tips-icon {
+    display: block;
+    margin: 0 auto 10px;
+    width: 50px;
+    height: 50px;
+    background: url(../images/tips-icon.png) no-repeat 0 0;
+    background-size: 100px 50px;
+}
+
+.dialog-tips-icon.error {
+    background-position: -50px 0;
+}
+
+.dialog .content {
+    padding: 20px 16px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.dialog-tips .content {
+    padding: 16px;
+}
+
+.dialog-caption {
+    color: #000;
+    overflow: hidden;
+}
+
+.dialog-caption b { /* display: block; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 400;
+    display: none;
+}
+
+.dialog-icon {
+    opacity: .75;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 1;
+    color: white;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    font-size: 28px;
+    background: #000;
+    font-family: arial;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.dialog-overlay {
+    background-color: #000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: .25;
+    z-index: 1000;
+}
+
+.dialog.cool {
+    background-color: black;
+    font-size: 120%;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.dialog input {
+    height: 36px;
+    padding: 6px;
+    line-height: 24px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dialog-prompt-content {
+    margin-bottom: 16px;
+}
+
+.pc-btn {
+    overflow: hidden;
+    border-top: 1px solid #dbd8d8;
+    border-radius: 0 0 5px 5px;
+}
+
+.pc-btn a {
+    display: block;
+    float: left;
+    width: 50%;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: #008db8;
+}
+
+.pc-btn a:active {
+    background: #e3f8ff;
+}
+
+.pc-btn a.bor1 {
+    border-right: 1px solid #dbd8d8;
+    margin-left: -1px;
+}
+
+.box{
+    margin: 20px 10px 0 10px;
+}
+ul, ol {
+    list-style: none;
+    margin: 0; padding: 0;
+}
+.box li{
+    margin-bottom: 20px;
+}
+.input-text {
+    height: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
+.btn{
+    width: 100%;
+    background: #019875;
+    height: 40px;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.succ{
+    width: 100%;
+    height: 48px;
+    background: url(../images/succ.png) no-repeat;
+    padding-left: 60px;
+    line-height: 48px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.fail{
+    width: 100%;
+    height: 48px;
+    background: url(../images/fail.png) no-repeat;
+    padding-left: 60px;
+    line-height: 48px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.product{
+    border: 2px solid #f5f5f5;
+    overflow: hidden;
+}
+img{
+    display: block;
+    width: 100%;
+}
+.desc{
+    padding: 20px 0;
+    text-align: left;
+    font-size: 16px;
+    color: #333;
+}
+.prompt{
+    font-size: 12px;
+    text-align: left;
+    color: #666;
+}
+.s_content2_by {
+    border: solid 1px #74bb1f;
+    height: auto;
+    background-color: #fcfff6;
+    margin: 20px 10px;
+}
+.s_content2_by ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 30px 0px 30px 20px;
+}
+.success{
+    width: 48px;
+    height: 48px;
+    background: url(../images/succ.png) no-repeat;
+    float: left;
+}
+@media (max-width: 420px) {
+    .s_content2_by ul li{
+        width: 100%;
+    }
+    .s_content2_by ul li{
+        margin: 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .success{
+        margin: 0 auto;
+        background: url(../images/succ.png) no-repeat;
+        float: none;
+    }
+}
