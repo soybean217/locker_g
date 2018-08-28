@@ -19,6 +19,52 @@ repositories {
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
+    
+// https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+runtime group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+// https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api
+runtime group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1'
+
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.4.1'
+// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+compile group: 'org.slf4j', name: 'slf4j-api', version: '1.5.8'
+// https://mvnrepository.com/artifact/log4j/log4j
+compile group: 'log4j', name: 'log4j', version: '1.2.15'
+// https://mvnrepository.com/artifact/org.apache.struts/struts2-core
+compile group: 'org.apache.struts', name: 'struts2-core', version: '2.3.35'
+// https://mvnrepository.com/artifact/org.apache.struts.xwork/xwork-core
+compile group: 'org.apache.struts.xwork', name: 'xwork-core', version: '2.3.35'
+// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.10.Final'
+// https://mvnrepository.com/artifact/org.springframework/spring
+compile group: 'org.springframework', name: 'spring', version: '2.5.6.SEC03'
+// https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk14
+compile group: 'org.bouncycastle', name: 'bcprov-jdk14', version: '1.60'
+// https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient
+compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
+// https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java
+compile group: 'com.alipay.sdk', name: 'alipay-sdk-java', version: '3.3.49.ALL'
+// https://mvnrepository.com/artifact/org.apache.poi/poi
+compile group: 'org.apache.poi', name: 'poi', version: '3.1-FINAL'
+// https://mvnrepository.com/artifact/org.apache.ant/ant
+compile group: 'org.apache.ant', name: 'ant', version: '1.7.1'
+// https://mvnrepository.com/artifact/com.google.zxing/core
+compile group: 'com.google.zxing', name: 'core', version: '3.3.3'
+// https://mvnrepository.com/artifact/org.logicalcobwebs/com.springsource.org.logicalcobwebs.proxool
+compile group: 'org.logicalcobwebs', name: 'com.springsource.org.logicalcobwebs.proxool', version: '0.9.1'
+// https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
+compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.10'
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+compile group: 'mysql', name: 'mysql-connector-java', version: '3.1.14'
+// https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+compile group: 'com.itextpdf', name: 'itextpdf', version: '5.3.4'
+
+// https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
+//compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4'
+compile 'net.sf.json-lib:json-lib:2.4:jdk15' 
+
+compile files('lib/wxpay-scanpay-java-sdk-1.0.jar')
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:23.0'
