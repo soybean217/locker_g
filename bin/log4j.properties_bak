@@ -1,0 +1,56 @@
+#log4j.rootLogger=INFO,SRALogFile
+#log4j.logger.SRAAuditLog = INFO,SRAAuditLog
+#log4j.logger.SRARunLog = INFO,SRARunLog
+
+#log4j.logger.com.highguard.Wisdom.struts.actions.wxapp = ERROR,DB
+#log4j.logger.com.highguard.Wisdom.struts.listener = ERROR,DB
+
+
+#log4j.appender.SRALogFile=org.apache.log4j.ConsoleAppender
+log4j.appender.SRALogFile=org.apache.log4j.RollingFileAppender
+
+log4j.appender.SRALogFile.File=/var/log/lug/alllog.log
+log4j.appender.SRALogFile.layout=org.apache.log4j.PatternLayout
+log4j.appender.SRALogFile.layout.ConversionPattern=%d-[SRA] %p [%t] %m%n
+log4j.appender.SRALogFile.MaxFileSize=30MB
+log4j.appender.SRALogFile.MaxBackupIndex=3
+
+#log4j.appender.SRAAuditLog=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.SRAAuditLog=org.apache.log4j.RollingFileAppender
+#log4j.appender.SRAAuditLog.DatePattern='_'yyyy-MM-dd'.log'  
+log4j.appender.SRAAuditLog.File=/var/log/lug/auditLog.log
+log4j.appender.SRAAuditLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.SRAAuditLog.layout.ConversionPattern=%d-[SRA] %p [%t] >> %m%n
+log4j.appender.SRAAuditLog.MaxFileSize=30MB
+log4j.appender.SRAAuditLog.MaxBackupIndex=10
+
+log4j.appender.SRARunLog=org.apache.log4j.RollingFileAppender  
+#log4j.appender.SRARunLog.DatePattern='_'yyyy-MM-dd'.log'
+log4j.appender.SRARunLog.File=/var/log/lug/runLog.log
+log4j.appender.SRARunLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.SRARunLog.layout.ConversionPattern=%d-[SRA] %p [%t] %m%n
+log4j.appender.SRARunLog.MaxFileSize=30MB
+log4j.appender.SRARunLog.MaxBackupIndex=10
+
+
+log4j.appender.DB=org.apache.log4j.jdbc.JDBCAppender
+log4j.appender.DB.driver=com.mysql.jdbc.Driver
+log4j.appender.DB.URL=jdbc:mysql://localhost:3306/locker?useUnicode=true&characterEncoding=UTF-8
+log4j.appender.DB.user=locker
+log4j.appender.DB.password=locker
+log4j.appender.DB.sql=insert into syslogs (uid, username, classname, method, createtime, level, msg) VALUES ('%X{userId}','%X{userName}','%C','%M','%d{yyyy-MM-dd HH:mm:ss}','%p','%m')
+log4j.appender.DB.layout=org.apache.log4j.PatternLayout
+
+log4j.logger.com.neusoft=DEBUG
+log4j.logger.com.opensymphony.oscache=ERROR
+log4j.logger.net.sf.navigator=ERROR
+log4j.logger.org.apache.commons=ERROR
+log4j.logger.org.apache.struts=WARN
+log4j.logger.org.displaytag=ERROR
+log4j.logger.org.springframework=ERROR
+log4j.logger.com.ibatis.db=WARN
+log4j.logger.org.apache.velocity=FATAL
+log4j.logger.com.canoo.webtest=WARN
+log4j.logger.org.hibernate.ps.PreparedStatementCache=WARN
+log4j.logger.org.hibernate=ERROR
+log4j.logger.org.logicalcobwebs=WARN

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.highguard.Wisdom.mgmt.hibernate.beans.TradingOrder"
+		table="tradingorder">
+		<id name="id" type="java.lang.Integer" unsaved-value="null">
+			<generator class="native" />
+		</id>
+		<property name="fruitname" type="java.lang.String" />
+		<property name="orderid" type="java.lang.Integer" />
+		<property name="latticeid" type="java.lang.Integer" />
+		<property name="copies" type="java.lang.String" />
+		<property name="price" type="java.lang.String" />
+		<property name="userid" type="java.lang.Integer" />
+		<property name="place" type="java.lang.String" />
+		<property name="imageurl" type="java.lang.String" />
+		<property name="texture" type="java.lang.String" />
+		
+	</class>
+</hibernate-mapping>

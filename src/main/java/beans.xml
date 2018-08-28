@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    <context:component-scan base-package="com.highguard.Wisdom.mgmt.dao"/>
+    <context:component-scan base-package="com.highguard.Wisdom.mgmt.manager"/>
+    <context:component-scan base-package="com.highguard.Wisdom.struts.actions"/>
+    <context:component-scan base-package="com.highguard.Wisdom.struts.beans"/>
+
+    <context:component-scan base-package="com.highguard.Wisdom.struts.service"/>
+    <context:component-scan base-package="com.highguard.Wisdom.struts.interceptor"/>
+    <!--<context:component-scan base-package="com.highguard.Wisdom.struts.ajax"/>-->
+    <!--<context:component-scan base-package="com.highguard.Wisdom.struts.biz"/>-->
+    <!--<context:component-scan base-package="com.highguard.Wisdom.osconfig.action"/>-->
+    <!--<context:component-scan base-package="com.highguard.Wisdom.osconfig.manager"/>-->
+
+    <!-- 连接池使用Proxool 方式 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>org.logicalcobwebs.proxool.ProxoolDriver</value>
+        </property>
+        <property name="url">
+            <value>proxool.db</value>
+        </property>
+    </bean>
+
+
+    <!-- 连接池c3p0方式 -->
+
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" lazy-init="true">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/User.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Fruit.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Recharge.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Device.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Lattice.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Trading.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Markpassword.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Latticestage.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/LatticeStatus.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/ICPort.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/InitStatus.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/TradingOrder.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Order.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/UserInfo.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/SmsRecord.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/OrderPlace.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/AppVersion.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/FeedBack.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/SocketLog.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Syslog.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/RechargeUser.hbm.xml</value>
+
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+                <prop key="hibernate.dialect">com.highguard.Wisdom.struts.common.CustomDialect</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
+                <prop key="hibernate.connection.autoReconnect">true</prop>
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.connection.release_mode">auto</prop>
+                <prop key="hibernate.show_sql">false</prop>
+            </props>
+        </property>
+
+    </bean>
+
+    <bean id="txManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager" lazy-init="true">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+</beans>

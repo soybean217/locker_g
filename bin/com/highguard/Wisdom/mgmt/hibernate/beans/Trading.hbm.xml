@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.highguard.Wisdom.mgmt.hibernate.beans.Trading"
+		table="trading">
+		<id name="id" type="java.lang.Integer" unsaved-value="null">
+			<generator class="native" />
+		</id>
+		<property name="username" type="java.lang.String" />
+		<property name="wx" type="java.lang.String" />
+		<property name="userid" type="java.lang.Integer" />
+		<property name="deviceid" type="java.lang.Integer" />
+		<property name="takeway" type="java.lang.String" />
+		<property name="fruitid" type="java.lang.Integer" />
+		<property name="balance" type="java.lang.String" />
+		<property name="consumption" type="java.lang.String" />	
+		<property name="status" type="java.lang.String" />
+		<property name="fruitnum" type="java.lang.String" />
+		<property name="createtime" type="java.sql.Timestamp" />	
+		<property name="latticeid" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

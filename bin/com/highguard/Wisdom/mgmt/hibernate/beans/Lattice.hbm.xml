@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.highguard.Wisdom.mgmt.hibernate.beans.Lattice"
+		table="lattice">
+		<id name="id" type="java.lang.Integer" unsaved-value="null">
+			<generator class="native" />
+		</id>
+		<property name="deviceid" type="java.lang.Integer" />
+		<property name="lockid" type="java.lang.String" />
+		<property name="qrcode" type="java.lang.String" />
+		<property name="fruitid" type="java.lang.Integer" />
+		<property name="fruit" type="java.lang.String" />
+		<property name="type" type="java.lang.Integer" />
+		<property name="price" type="java.lang.String" />
+		<property name="status" type="java.lang.String" />
+		<property name="weight" type="java.lang.String" />
+		<property name="copynum" type="java.lang.String" />
+		<property name="copyprice" type="java.lang.String" />
+		<property name="ispromotion" type="java.lang.Integer" />
+		<property name="promotionprice" type="java.lang.String" />
+		<property name="promotionweight" type="java.lang.String" />
+		<property name="promotiontime" type="java.lang.String" />
+
+		<one-to-one name="icport" property-ref="lattice" lazy="false" cascade="save-update" />
+	</class>
+</hibernate-mapping>

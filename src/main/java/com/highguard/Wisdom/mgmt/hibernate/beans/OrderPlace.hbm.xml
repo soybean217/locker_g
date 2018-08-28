@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.highguard.Wisdom.mgmt.hibernate.beans.OrderPlace"
+		table="orderplace">
+		<id name="id" type="java.lang.Integer" unsaved-value="null">
+			<generator class="native" />
+		</id>
+		<property name="userid" type="java.lang.Integer" />
+		<property name="phone" type="java.lang.String" />
+		<property name="username" type="java.lang.String" />
+		<property name="address" type="java.lang.String" />
+		<property name="comment" type="java.lang.String" />
+		<property name="city" type="java.lang.String" />
+		
+	</class>
+</hibernate-mapping>

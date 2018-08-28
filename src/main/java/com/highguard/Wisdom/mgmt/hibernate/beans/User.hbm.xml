@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.highguard.Wisdom.mgmt.hibernate.beans.User"
+		table="user">
+		<id name="id" type="java.lang.Integer" unsaved-value="null">
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String" />
+		<property name="sfz" type="java.lang.String" />
+		<property name="card" type="java.lang.String" />
+		<property name="wx" type="java.lang.String" />
+		<property name="avatar" type="java.lang.String" />
+		<property name="openid" type="java.lang.String" />
+		<property name="sex" type="java.lang.String" />
+		<property name="telephone" type="java.lang.String" />
+		<property name="address" type="java.lang.String" />
+		<property name="sfzphoto" type="java.sql.Blob" />
+		<property name="otherphoto" type="java.sql.Blob" />	
+		<property name="balance" type="java.lang.String" />
+		<property name="checkbalance" type="java.lang.String" />
+		<property name="consumption" type="java.lang.String" />
+		<property name="createtime" type="java.lang.String" />
+		<property name="uuid" type="java.lang.String" />	
+        <property name="type" type="java.lang.String" />	
+        <property name="num" type="java.lang.String" />	
+        <property name="status" type="java.lang.String" />	
+        <property name="yzTime" type="java.lang.String" />	
+        <property name="loginToken" type="java.lang.String" />
+        <property name="smTime" type="java.lang.String" />
+        <property name="czTime" type="java.lang.String" />
+        <property name="lastpaytime" type="java.lang.String" />
+        <property name="lastlattice" type="java.lang.String" />
+        <property name="lastdevice" type="java.lang.String" />
+        <property name="outcardnumber" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

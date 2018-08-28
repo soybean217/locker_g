@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"   
+   "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.action.extension" value="do,action" />
+	<constant name="struts.multipart.maxSize" value="10485760000" />
+    <include file="struts-default.xml"></include>
+	<package name="wisdom" extends="struts-default">
+		<result-types>
+			<result-type name="chart"
+				class="org.apache.struts2.dispatcher.ChartResult"></result-type>
+			<result-type name="chartApOne"
+				class="org.apache.struts2.dispatcher.ChartResult"></result-type>
+			<result-type name="chartApTwo"
+				class="org.apache.struts2.dispatcher.ChartResult"></result-type>
+			<result-type name="chartApThree"
+				class="org.apache.struts2.dispatcher.ChartResult"></result-type>
+		</result-types>
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.highguard.Wisdom.struts.interceptor.CheckLoginInterceptor">
+			</interceptor>
+			<interceptor-stack name="siaStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- 为该package指定一个默认的拦截器栈，这样就可以不用为每个action指定一拦截器栈-->
+		<default-interceptor-ref name="siaStack" />
+		<!-- 全局results配置 -->
+		<global-results>
+			<result name="login" type="redirect">/pages/timeout.jsp</result>
+			<result name="error">/pages/error.jsp</result>
+			<result name="test">/pages/pay.jsp</result>
+		</global-results>
+		<!-- 系统维护 -->
+		<action name="login" class="loginAction">
+			<result>/pages/main.jsp</result>
+			<result name="input">/pages/login.jsp</result>
+			<result name="printAdmin">/pages/printadmin.jsp</result>
+		</action>
+		<action name="logout" class="logoutAction">
+			<result>/pages/login.jsp</result>
+			<result name="input">/pages/login.jsp</result>
+		</action>
+		<action name="modifyPassword" class="modifyPasswordAction"
+			method="modifyPassword">
+			<result>/pages/modifypassword.jsp</result>
+		</action>
+		<action name="toModifyPassword" class="modifyPasswordAction"
+			method="toModifyPassword">
+			<result>/pages/modifypassword.jsp</result>
+		</action>
+       <!-- user -->
+		<action name="userList" class="userAction" method="userList">
+			<result>/pages/system/manageusers.jsp</result>
+		</action>
+		
+		<action name="toAddUser" class="userAction" method="toAddUser">
+			<result>/pages/system/addUser.jsp</result>
+		</action>
+		<action name="addUser" class="userAction" method="addUser">
+		    <result name="error">/pages/system/addUser.jsp</result>
+			<result type="redirectAction">userList</result>
+		</action>
+		<action name="editUser" class="userAction" method="editUser">
+		     <result name="error">/pages/system/editUser.jsp</result>
+			<result type="redirectAction">userList</result>
+		</action>
+		<action name="toeditUser" class="userAction" method="toeditUser">
+			<result>/pages/system/editUser.jsp</result>
+		</action>
+		<action name="showImage" class="userAction" method="showImage"/>
+		
+		<action name="deleteUser" class="userAction" method="deleteUser">
+			<result type="redirectAction">userList</result>
+		</action>
+		
+		<action name="checkUser" class="checkUserAction" method="checkUser">
+		    <result name="error">/error.jsp</result>
+			<result>/product.jsp</result>
+		</action>
+		
+		<action name="sendSocket" class="checkUserAction" method="sendSocket">
+		   <result >/success.jsp</result>
+		</action>
+
+
+		<action name="control" class="controlAction" method="lattice" />
+		<action name="code2session" class="controlAction" method="code2session" />
+		<action name="touch" class="controlAction" method="touch" />
+		<action name="userInfo" class="controlAction" method="userInfo" />
+		<action name="precharge" class="controlAction" method="createPrePayOrder" />
+		<action name="wxpay" class="controlAction" method="pay" />
+		<action name="wxpayWithTestFee" class="controlAction" method="payWithTestFee" />
+		<action name="payResult" class="controlAction" method="payback" />
+		<action name="getCode" class="controlAction" method="getCode" />
+		<action name="bindMobile" class="controlAction" method="bindMobile" />
+		<action name="confirmorder" class="controlAction" method="confirmOrder" />
+		<action name="openlock" class="controlAction" method="scan" />
+		<action name="check" class="controlAction" method="checkOrder" />
+		<action name="orders" class="controlAction" method="orders" />
+		<action name="devices" class="controlAction" method="devices" />
+		<action name="querymessage" class="controlAction" method="queryMessage" />
+		<action name="querylattices" class="controlAction" method="queryLattices" />
+		<action name="queryAreas" class="controlAction" method="queryAreas" />
+		<action name="queryorder" class="controlAction" method="queryOrder" />
+		<action name="bindnumber" class="controlAction" method="bindNumber" />
+		<action name="op" class="controlAction" method="openLock" />
+		<action name="caculate" class="controlAction" method="caculateOrder" />
+
+ <!-- user -->
+		<action name="fruitList" class="fruitAction" method="fruitList">
+			<result>/pages/fruit/managefruit.jsp</result>
+		</action>
+
+		<action name="demo" class="demoAction" method="console">
+			<result>/pages/demo.jsp</result>
+		</action>
+
+		<action name="toAddFruit" class="fruitAction" method="toAddFruit">
+			<result>/pages/fruit/addfruit.jsp</result>
+		</action>
+		<action name="addFruit" class="fruitAction" method="addFruit">
+			<result type="redirectAction">fruitList</result>
+		</action>
+		<action name="editFruit" class="fruitAction" method="editFruit">
+			<result type="redirectAction">fruitList</result>
+		</action>
+		<action name="toeditFruit" class="fruitAction" method="toeditFruit">
+			<result>/pages/fruit/editfruit.jsp</result>
+		</action>
+		
+		<action name="deleteFruit" class="fruitAction" method="deleteFruit">
+			<result type="chain">fruitList</result>
+		</action>
+	
+		
+      <action name="rechargePassword" class="rechargeAction" method="rechargePassword">
+			<result>/pages/recharge/toaddcharge.jsp</result>
+		</action>
+        <action name="validatePasword" class="rechargeAction" method="validatePasword">
+			<result type="redirectAction">rechargeList</result>
+			<result name="input">/pages/recharge/toaddcharge.jsp</result>
+		</action>
+      <action name="rechargeList" class="rechargeAction" method="rechargeList">
+			<result>/pages/recharge/managecharge.jsp</result>
+	  </action>
+	   <action name="rechargeExport" class="rechargeAction" method="rechargeExport">
+		
+	  </action>
+	  
+       <action name="toAddRecharge" class="rechargeAction" method="toAddRecharge">
+			<result>/pages/recharge/addcharge.jsp</result>
+	  </action>
+	  <action name="addRecharge" class="rechargeAction" method="addRecharge">
+			<result type="chain">rechargeList</result>
+	  </action>
+        <action name="deleteRecharge" class="rechargeAction" method="deleteRecharge">
+			<result type="redirectAction">rechargeList</result>
+	  </action>
+	  
+        <!-- 设备管理 -->
+       <action name="deviceList" class="deviceAction" method="deviceList">
+			<result>/pages/device/managedevice.jsp</result>
+	  </action>
+	   <action name="toAddDevice" class="deviceAction" method="toAddDevice">
+			<result>/pages/device/adddevice.jsp</result>
+	  </action>
+	   <action name="addDevice" class="deviceAction" method="addDevice">
+			<result type="chain">deviceList</result>
+	  </action>
+	   <action name="toeditDevice" class="deviceAction" method="toeditDevice">
+			<result>/pages/device/editdevice.jsp</result>
+	  </action>
+	   <action name="editDevice" class="deviceAction" method="editDevice">
+			<result type="chain">deviceList</result>
+	  </action>
+	  <action name="deleteDevice" class="deviceAction" method="deleteDevice">
+			<result type="chain">deviceList</result>
+	  </action>
+	   <action name="latticeList" class="deviceAction" method="latticeList">
+			<result>/pages/device/managelattice.jsp</result>
+	  </action>
+	  <action name="toeditLattice" class="deviceAction" method="toeditLattice">
+			<result>/pages/device/editlattice.jsp</result>
+	  </action>
+	   <action name="editLattice" class="deviceAction" method="editLattice">
+			<result type="chain">latticeList</result>
+	  </action>
+	  <action name="deleteLattice" class="deviceAction" method="deleteLattice">
+			<result type="chain">latticeList</result>
+	  </action>
+	  
+	  <action name="latticeAjax" class="deviceAction" method="latticeAjax" />  
+	  
+	  <action name="showWxImage" class="deviceAction" method="showWxImage"/>
+	  <!-- 消费查询 -->
+	   <action name="tradingList" class="tradingAction" method="tradingList">
+			<result>/pages/trading/tradinglist.jsp</result>
+	  </action>
+	  <action name="exportTrading" class="tradingAction" method="exportTrading">
+	  </action>
+	  <action name="toAddTrading" class="tradingAction" method="toAddTrading">
+			<result>/pages/trading/addtrading.jsp</result>
+	  </action>
+	  <action name="addTrading" class="tradingAction" method="addTrading">
+	       <result name="error" type="chain">toAddTrading</result>
+			<result type="chain">tradingList</result>
+	  </action>
+	  <action name="deleteTrading" class="tradingAction" method="deleteTrading">
+	       <result name="error" type="chain">toAddTrading</result>
+			<result type="chain">tradingList</result>
+	  </action>
+	  
+	  
+     <!-- socket 格子链接状态查询   -->
+      <action name="latticeStatusList" class="deviceAction" method="latticeStatusList">
+			<result>/pages/device/latticestatuslist.jsp</result>
+	  </action>
+     <!-- IC卡管理 -->
+      <action name="iCPortList" class="com.highguard.Wisdom.struts.actions.ICPostAction" method="iCPortList">
+			<result>/pages/icport/icportlist.jsp</result>
+	  </action>
+		<action name="toeditIcport" class="ICPostAction" method="toeditIcport">
+			<result>/pages/icport/editicport.jsp</result>
+		</action>
+		<action name="editIcport" class="ICPostAction" method="editIcport">
+			<result type="chain">iCPortList</result>
+		</action>
+	  <action name="deleteICPort" class="com.highguard.Wisdom.struts.actions.ICPostAction" method="deleteICPort">
+	       <result name="error" type="chain">iCPortList</result>
+			<result type="chain">iCPortList</result>
+	  </action>
+	  <!-- 设置卡里最低可以开锁金额 -->
+	  
+	  <action name="validatePasword1" class="rechargeAction" method="validatePasword">
+			<result type="redirectAction">toEditJE</result>
+			<result name="input">srmm.jsp</result>
+		</action>
+	   <action name="toEditJE" class="modifyPasswordAction" method="toEditJE">
+			<result>/pages/je.jsp</result>
+	  </action>
+	  <action name="editJE" class="modifyPasswordAction" method="editJE">
+			<result type="chain">toEditJE</result>
+	  </action>
+	</package>
+	<package name="notify" extends="struts-default">
+		<action name="wx_pay_notify" class="wxNotify" method="wxPayNotify"></action>
+	</package>
+	
+	<package name="wisdomApi" extends="struts-default">
+		
+		<action name="autoLogin" class="appLoginAction" method="autoLogin"> </action>
+		<action name="depositWX" class="walletApiAction" method="chongZhi"></action>
+		<action name="chongZhi" class="walletApiAction" method="chongZhi"></action>
+		<action name="depositAlipay" class="alipayAction" method="getPayParams"></action>
+		
+		
+		<action name="wxPayNotify" class="wxNotify" method="wxPayNotify"></action>
+		<action name="aliPayNotify" class="alipayNotifyAction" method="aliPayNotify"></action>
+		<!-- <action name="queryAndUpdateOrderState" class="walletApiAction" method="queryAndUpdateOrderState"></action>
+		 -->
+		<action name="getDevices" class="deviceApiAction" method="deviceList">
+		</action>
+		
+		<!-- 登陆及个人信息查询 -->
+		<action name="getSecurityCode" class="appLoginAction" method="getSecurityCode"></action>
+		<action name="appLogin" class="appLoginAction" method="applogin"></action>
+		<action name="logout" class="appLoginAction" method="logout"></action>
+		
+		
+		<action name="getUserInfo" class="validationAction" method="getUserInfo"></action>
+		<action name="fruitQuery*" class="fruitApiAction" method="fruitQuery{1}"> </action>
+				
+		
+		
+		<!-- 亲情号   -->
+		<action name="familyNumList" class="validationAction" method="familyNumList"></action>
+		<action name="addFamilyNum" class="validationAction" method="getaddFamilyNum"></action>
+		<action name="deleteFamilyNum" class="validationAction" method="deleteFamilyNum"></action>
+		
+		
+		<!-- 订单管理 -->
+		<action name="getTradingOrder" class="tradingApiAction" method="getTradingOrder"></action>
+		<action name="addTradingOrder" class="tradingApiAction" method="addTradingOrder"></action>
+		<action name="deleteOrder" class="tradingApiAction" method="deleteOrder"></action>
+		<action name="payOrder" class="tradingApiAction" method="payOrder"></action>
+		
+		
+		
+		<!-- 收货地址管理  新增和修改都是同一个action请求  修改多一个id  -->
+		<action name="getOrderPlaceList" class="orderPlaceApiAction" method="getOrderPlaceList"></action>
+		<action name="addOrderPlace" class="orderPlaceApiAction" method="addOrderPlace"></action>
+		<action name="deleteOrderPlace" class="orderPlaceApiAction" method="deleteOrderPlace"></action>
+		
+		<!-- 版本升级 -->
+		<action name="checkVersion" class="appVersionAction" method="checkVersion"></action>
+		<action name="upgrade" class="appVersionAction" method="upgrade"></action>
+		
+		<!-- 扫码开门 -->
+		<action name="openDoor" class="openDoorACtion" method="openDoor"></action>
+		
+		
+		<action name="toEditURL" class="modifyPasswordAction" method="toEditURL">
+			<result>/pages/url.jsp</result>
+	  </action>
+	  <action name="editURL" class="modifyPasswordAction" method="editURL">
+			<result>/pages/url.jsp</result>
+	  </action>
+	  
+	  <action name="saveFeedBack" class="openDoorACtion" method="saveFeedBack"></action>
+	  <action name="feedBackList" class="userAction" method="feedBackList">
+			<result>/pages/system/fk.jsp</result>
+		</action>
+	  <action name="getUrl" class="openDoorACtion" method="getUrll"></action>
+	  <action name="orderList" class="tradingApiAction" method="orderList">
+			<result>/pages/trading/orderlist.jsp</result>
+	  </action>
+	  <action name="toeditOrder" class="tradingApiAction" method="toeditOrder">
+			<result>/pages/trading/editorder.jsp</result>
+	  </action>
+	  <action name="editOrder" class="tradingApiAction" method="editOrder">
+			<result type="chain">orderList</result>
+	  </action>
+	    <action name="socketLogList" class="socketLogAction" method="socketLogList">
+			<result>/pages/system/socketLogList.jsp</result>
+	  </action>
+	  <!-- 充值管理员管理  -->
+	  <action name="rechargeUserList" class="rechargeUserAction" method="rechargeUserList">
+			<result>/pages/recharge/userList.jsp</result>
+	  </action>
+	  <action name="toAddRechargeUser" class="rechargeUserAction" method="toAddRechargeUser">
+			<result>/pages/recharge/addUser.jsp</result>
+	  </action>
+	  <action name="addRechargeUser" class="rechargeUserAction" method="addRechargeUser">
+	       <result name="error" type="chain">rechargeUserList</result>
+			<result type="chain">rechargeUserList</result>
+	  </action>
+	    <action name="toediteRechargeUser" class="rechargeUserAction" method="toediteRechargeUser">
+			<result>/pages/recharge/editUser.jsp</result>
+	  </action>
+	   <action name="editRechargeUser" class="rechargeUserAction" method="editRechargeUser">
+	       <result name="error" type="chain">rechargeUserList</result>
+			<result type="chain">rechargeUserList</result>
+	  </action>
+	    <action name="deleteRechargeUser" class="rechargeUserAction" method="deleteRechargeUser">
+	       <result name="error" type="chain">rechargeUserList</result>
+			<result type="chain">rechargeUserList</result>
+	  </action>
+	</package>
+</struts>
