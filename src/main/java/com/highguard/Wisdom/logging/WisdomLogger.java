@@ -2,10 +2,10 @@ package com.highguard.Wisdom.logging;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.highguard.Wisdom.struts.actions.wxapp.WebSocket;
-import com.highguard.Wisdom.struts.listener.MainSocketThread;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+
+import com.highguard.Wisdom.struts.listener.MainSocketThread;
 import com.opensymphony.xwork2.ActionContext;
 
 @SuppressWarnings("unchecked")

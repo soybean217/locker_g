@@ -19,6 +19,7 @@
 		<property name="freight" type="java.lang.String" />
 		<property name="isSend" type="java.lang.String" />
 		<property name="ordersn" type="java.lang.String" />
+		<property name="storeid" type="java.lang.Integer" />
         <many-to-one name="user" fetch="join" lazy="false" class="com.highguard.Wisdom.mgmt.hibernate.beans.User" column="userid" />
 		<many-to-one name="device" fetch="join" lazy="false" class="com.highguard.Wisdom.mgmt.hibernate.beans.Lattice" column="deviceid" />
 		<many-to-one name="icport" fetch="join" lazy="false" class="com.highguard.Wisdom.mgmt.hibernate.beans.ICPort" column="icportid" />

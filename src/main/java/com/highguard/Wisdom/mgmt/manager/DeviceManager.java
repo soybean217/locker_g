@@ -34,7 +34,6 @@ public class DeviceManager {
 	 * @return
 	 */
 	public List<Device> getDeviceList(int page, int rows, Map map) {
-
 		return dao.getDeviceList(page, rows, map);
 	}
 

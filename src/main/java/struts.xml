@@ -39,7 +39,8 @@
 		</global-results>
 		<!-- 系统维护 -->
 		<action name="login" class="loginAction">
-			<result>/pages/main.jsp</result>
+			<result name="successAdmin">/pages/main.jsp</result>
+			<result name="successStore">/pages/mainStore.jsp</result>
 			<result name="input">/pages/login.jsp</result>
 			<result name="printAdmin">/pages/printadmin.jsp</result>
 		</action>
@@ -320,6 +321,7 @@
 	  <action name="getUrl" class="openDoorACtion" method="getUrll"></action>
 	  <action name="orderList" class="tradingApiAction" method="orderList">
 			<result>/pages/trading/orderlist.jsp</result>
+			<result name="input">/pages/login.jsp</result>
 	  </action>
 	  <action name="toeditOrder" class="tradingApiAction" method="toeditOrder">
 			<result>/pages/trading/editorder.jsp</result>

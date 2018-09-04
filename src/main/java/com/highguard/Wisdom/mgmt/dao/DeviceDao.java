@@ -46,6 +46,9 @@ public class DeviceDao {
 		if(map.get("numSearch")!=null&&!"".equals(map.get("numSearch"))){
 			hql.append(" and num like '%"+map.get("numSearch")+"%'");
 		}
+		if(map.get("storeId")!=null&&!"".equals(map.get("storeId"))){
+			hql.append(" and storeid = '"+map.get("storeId")+"'");
+		}
 
 		SQLQuery query = factory.getCurrentSession().createSQLQuery(
 				hql.toString());

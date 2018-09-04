@@ -43,6 +43,7 @@
         <property name="mappingResources">
             <list>
                 <value>/com/highguard/Wisdom/mgmt/hibernate/beans/User.hbm.xml</value>
+                <value>/com/highguard/Wisdom/mgmt/hibernate/beans/SystemUser.hbm.xml</value>
                 <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Fruit.hbm.xml</value>
                 <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Recharge.hbm.xml</value>
                 <value>/com/highguard/Wisdom/mgmt/hibernate/beans/Device.hbm.xml</value>

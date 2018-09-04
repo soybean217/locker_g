@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.highguard.Wisdom.exception.WisdomException;
 import com.highguard.Wisdom.mgmt.dao.SmsRecordDao;
+import com.highguard.Wisdom.mgmt.dao.SystemUserDao;
 import com.highguard.Wisdom.mgmt.dao.UserDao;
 import com.highguard.Wisdom.mgmt.dao.UserInfoDao;
 import com.highguard.Wisdom.mgmt.hibernate.beans.SmsRecord;
@@ -32,6 +33,8 @@ import net.sf.json.JSONObject;
 public class ValidationServiceImpl implements ValidationService{
 	@Resource
 	UserDao userDao;
+	@Resource
+	SystemUserDao systemUserDao;
 	@Resource
 	UserInfoDao userInfoDao;
 	@Resource
