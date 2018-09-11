@@ -10,6 +10,7 @@ import com.highguard.Wisdom.struts.common.ShortMessageUtils;
 import com.highguard.Wisdom.struts.common.WxApp;
 import com.highguard.Wisdom.struts.listener.*;
 import com.highguard.Wisdom.util.CommunityUtils;
+import com.highguard.Wisdom.util.JsonUtil;
 import com.highguard.Wisdom.util.StringUtil;
 import com.highguard.Wisdom.util.WxPayUtil;
 import net.sf.json.JSON;
@@ -158,8 +159,7 @@ public class ControlAction extends BaseAction {
 	}
 
 	public void checkOrder() {
-		TradingOrderManager tradingOrderManager = (TradingOrderManager) ApplicationUtil.act
-				.getBean("tradingOrderManager");
+		TradingOrderManager tradingOrderManager = (TradingOrderManager) ApplicationUtil.act.getBean("tradingOrderManager");
 		HttpServletRequest request = ServletActionContext.getRequest();
 		User user = (User) request.getSession().getAttribute("user");
 		JSONObject response = new JSONObject();
@@ -204,7 +204,8 @@ public class ControlAction extends BaseAction {
 		}
 
 		try {
-			String postedData = IOUtils.toString(request.getInputStream());
+//			String postedData = IOUtils.toString(request.getInputStream());
+			String postedData = JsonUtil.getRequestInputStream(request);
 			if (StringUtil.isEmpty(postedData)) {
 				response.put("status", 0);
 				jsonResponse(response);
@@ -225,7 +226,6 @@ public class ControlAction extends BaseAction {
 				action = postedJson.getString("action");
 
 			// 验证签名，暂时省略
-
 			// 获取设备ID
 			Device device = deviceManager.getDeviceById(id);
 			if (device == null) {
@@ -234,7 +234,6 @@ public class ControlAction extends BaseAction {
 				jsonResponse(response);
 				return;
 			}
-
 			if ("takeback".equals(action)) {
 
 			} else {
@@ -373,144 +372,141 @@ public class ControlAction extends BaseAction {
 			jsonError(e.getMessage());
 		}
 	}
-	
+
 	// 发起微信支付
-		public String payWithTestFee() {
-			logger.debug("enter payWithTestFee");
-			HttpServletRequest request = ServletActionContext.getRequest();
-			JSONObject response = new JSONObject();
+	public String payWithTestFee() {
+		logger.debug("enter payWithTestFee");
+		HttpServletRequest request = ServletActionContext.getRequest();
+		JSONObject response = new JSONObject();
 
-			GetPathCommon common = new GetPathCommon();
+		GetPathCommon common = new GetPathCommon();
 
-			TradingOrderManager orderManager = (TradingOrderManager) ApplicationUtil.act.getBean("tradingOrderManager");
-			// 商户号
-			String mchId = "1502130451";
+		TradingOrderManager orderManager = (TradingOrderManager) ApplicationUtil.act.getBean("tradingOrderManager");
+		// 商户号
+		String mchId = "1502130451";
 //	        String mchId = "";
-	//支付密钥
-			String key = "&key=yixingli180ov192d2s007746xxxxxxx";
+		// 支付密钥
+		String key = "&key=yixingli180ov192d2s007746xxxxxxx";
 //	        String key = "&key=";
-	//交易类型
-			String tradeType = "JSAPI";
-	//随机字符串
-			String nonceStr = WxPayUtil.getNonceStr();
-	//微信支付完成后给该链接发送消息，判断订单是否完成
-			String notifyUrl = "https://lug.popbot.cn/locker/payResult.action";
-	//微信用户唯一id
+		// 交易类型
+		String tradeType = "JSAPI";
+		// 随机字符串
+		String nonceStr = WxPayUtil.getNonceStr();
+		// 微信支付完成后给该链接发送消息，判断订单是否完成
+		String notifyUrl = "https://lug.popbot.cn/locker/payResult.action";
+		// 微信用户唯一id
 
-
-			if (request.getParameter("openid") == null) {
-				response.put("status", 0);
-				response.put("data", "支付失败，openid is null");
-				jsonResponse(response);
-				return ERROR;
-			}
-			String openId = request.getParameter("openid");
-			// 小程序id
-			try {
-				if (common.getCommonDir("appid") == null) {
-					response.put("status", 0);
-					response.put("data", "支付失败，appid is null");
-					jsonResponse(response);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			String appid = null;
-			try {
-				appid = common.getCommonDir("appid");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// 商品订单号(保持唯一性)
-			String outTradeNo = orderManager.getOrderIdByUUId();
-			// 支付金额
-			String totalFee = "1";
-
-			// 发起支付设备ip
-			String spbillCreateIp = "127.0.0.1";
-			// 商品描述
-			String body = "租赁玩具";
-			// 附加数据，商户携带的订单的自定义数据 (原样返回到通知中,这类我们需要系统中订单的id 方便对订单进行处理)
-			String attach = "";
-
-			// 我们后面需要键值对的形式，所以先装入map
-			Map<String, String> sParaTemp = new HashMap<String, String>();
-			sParaTemp.put("appid", appid);
-			sParaTemp.put("attach", attach);
-			sParaTemp.put("body", body);
-			sParaTemp.put("mch_id", mchId);
-			sParaTemp.put("nonce_str", nonceStr);
-			sParaTemp.put("notify_url", notifyUrl);
-			sParaTemp.put("openid", openId);
-			sParaTemp.put("out_trade_no", outTradeNo);
-			sParaTemp.put("spbill_create_ip", spbillCreateIp);
-			sParaTemp.put("total_fee", totalFee);
-			sParaTemp.put("trade_type", tradeType);
-
-			logger.debug(sParaTemp.toString());
-			// 去掉空值 跟 签名参数(空值不参与签名，所以需要去掉)
-			Map<String, String> map = WxPayUtil.paraFilter(sParaTemp);
-			logger.debug(map.toString());
-	// 按照 参数=参数值&参数2=参数值2 这样的形式拼接（拼接需要按照ASCII码升序排列
-			String mapStr = WxPayUtil.createLinkString(map);
-			// MD5运算生成签名
-			logger.debug(mapStr.toString());
-			logger.debug(key);
-			String sign = WxPayUtil.sign(mapStr, key, "utf-8").toUpperCase();
-			sParaTemp.put("sign", sign);
-			logger.debug(sParaTemp.toString());
-			/**
-			 * 组装成xml参数,此处偷懒使用手动组装，严格代码可封装一个方法，XML标排序需要注意，ASCII码升序排列
-			 */
-			// + "<attach>" + attach + "</attach>"
-			String xml = "<xml>" + "<appid>" + appid + "</appid>" + "<body>" + body + "</body>" + "<mch_id>" + mchId
-					+ "</mch_id>" + "<nonce_str>" + nonceStr + "</nonce_str>" + "<notify_url>" + notifyUrl + "</notify_url>"
-					+ "<openid>" + openId + "</openid>" + "<out_trade_no>" + outTradeNo + "</out_trade_no>"
-					+ "<spbill_create_ip>" + spbillCreateIp + "</spbill_create_ip>" + "<total_fee>" + totalFee
-					+ "</total_fee>" + "<trade_type>" + tradeType + "</trade_type>" + "<sign>" + sign + "</sign>"
-					+ "</xml>";
-			logger.debug(xml);
-			// 统一下单url，生成预付id
-			String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-			String result = WxPayUtil.httpRequest(url, "POST", xml);
-
-			logger.debug("Payment unifiedorder: " + result);
-
-			Map<String, String> paramMap = new HashMap<String, String>();
-			String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);
-			// 得到预支付id
-			String prepay_id = "";
-			try {
-				prepay_id = WxPayUtil.getPayNo(result);
-			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String packages = "prepay_id=" + prepay_id;
-			String nonceStr1 = WxPayUtil.getNonceStr();
-			// 开始第二次签名
-			String mapStr1 = "appId=" + appid + "&nonceStr=" + nonceStr1 + "&package=prepay_id=" + prepay_id
-					+ "&signType=MD5&timeStamp=" + timeStamp;
-			String paySign = WxPayUtil.sign(mapStr1, key, "utf-8").toUpperCase();
-			// 前端所需各项参数拼接
-			String finaPackage = "\"appId\":\"" + appid + "\",\"timeStamp\":\"" + timeStamp + "\",\"nonceStr\":\""
-					+ nonceStr1 + "\",\"package\":\"" + packages + "\",\"signType\" : \"MD5" + "\",\"paySign\":\"" + paySign
-					+ "\"";
-
-			Map<String, String> params = new HashMap<>();
-			params.put("timeStamp", timeStamp);
-			params.put("nonceStr", nonceStr1);
-			params.put("package", packages);
-			params.put("signType", "MD5");
-			params.put("paySign", paySign);
-
-			response.put("status", 1);
-			response.put("data", params);
+		if (request.getParameter("openid") == null) {
+			response.put("status", 0);
+			response.put("data", "支付失败，openid is null");
 			jsonResponse(response);
-
-			return SUCCESS;
+			return ERROR;
 		}
+		String openId = request.getParameter("openid");
+		// 小程序id
+		try {
+			if (common.getCommonDir("appid") == null) {
+				response.put("status", 0);
+				response.put("data", "支付失败，appid is null");
+				jsonResponse(response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String appid = null;
+		try {
+			appid = common.getCommonDir("appid");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 商品订单号(保持唯一性)
+		String outTradeNo = orderManager.getOrderIdByUUId();
+		// 支付金额
+		String totalFee = "1";
+
+		// 发起支付设备ip
+		String spbillCreateIp = "127.0.0.1";
+		// 商品描述
+		String body = "租赁玩具";
+		// 附加数据，商户携带的订单的自定义数据 (原样返回到通知中,这类我们需要系统中订单的id 方便对订单进行处理)
+		String attach = "";
+
+		// 我们后面需要键值对的形式，所以先装入map
+		Map<String, String> sParaTemp = new HashMap<String, String>();
+		sParaTemp.put("appid", appid);
+		sParaTemp.put("attach", attach);
+		sParaTemp.put("body", body);
+		sParaTemp.put("mch_id", mchId);
+		sParaTemp.put("nonce_str", nonceStr);
+		sParaTemp.put("notify_url", notifyUrl);
+		sParaTemp.put("openid", openId);
+		sParaTemp.put("out_trade_no", outTradeNo);
+		sParaTemp.put("spbill_create_ip", spbillCreateIp);
+		sParaTemp.put("total_fee", totalFee);
+		sParaTemp.put("trade_type", tradeType);
+
+		logger.debug(sParaTemp.toString());
+		// 去掉空值 跟 签名参数(空值不参与签名，所以需要去掉)
+		Map<String, String> map = WxPayUtil.paraFilter(sParaTemp);
+		logger.debug(map.toString());
+		// 按照 参数=参数值&参数2=参数值2 这样的形式拼接（拼接需要按照ASCII码升序排列
+		String mapStr = WxPayUtil.createLinkString(map);
+		// MD5运算生成签名
+		logger.debug(mapStr.toString());
+		logger.debug(key);
+		String sign = WxPayUtil.sign(mapStr, key, "utf-8").toUpperCase();
+		sParaTemp.put("sign", sign);
+		logger.debug(sParaTemp.toString());
+		/**
+		 * 组装成xml参数,此处偷懒使用手动组装，严格代码可封装一个方法，XML标排序需要注意，ASCII码升序排列
+		 */
+		// + "<attach>" + attach + "</attach>"
+		String xml = "<xml>" + "<appid>" + appid + "</appid>" + "<body>" + body + "</body>" + "<mch_id>" + mchId
+				+ "</mch_id>" + "<nonce_str>" + nonceStr + "</nonce_str>" + "<notify_url>" + notifyUrl + "</notify_url>"
+				+ "<openid>" + openId + "</openid>" + "<out_trade_no>" + outTradeNo + "</out_trade_no>" + "<spbill_create_ip>"
+				+ spbillCreateIp + "</spbill_create_ip>" + "<total_fee>" + totalFee + "</total_fee>" + "<trade_type>"
+				+ tradeType + "</trade_type>" + "<sign>" + sign + "</sign>" + "</xml>";
+		logger.debug(xml);
+		// 统一下单url，生成预付id
+		String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+		String result = WxPayUtil.httpRequest(url, "POST", xml);
+
+		logger.debug("Payment unifiedorder: " + result);
+
+		Map<String, String> paramMap = new HashMap<String, String>();
+		String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);
+		// 得到预支付id
+		String prepay_id = "";
+		try {
+			prepay_id = WxPayUtil.getPayNo(result);
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String packages = "prepay_id=" + prepay_id;
+		String nonceStr1 = WxPayUtil.getNonceStr();
+		// 开始第二次签名
+		String mapStr1 = "appId=" + appid + "&nonceStr=" + nonceStr1 + "&package=prepay_id=" + prepay_id
+				+ "&signType=MD5&timeStamp=" + timeStamp;
+		String paySign = WxPayUtil.sign(mapStr1, key, "utf-8").toUpperCase();
+		// 前端所需各项参数拼接
+		String finaPackage = "\"appId\":\"" + appid + "\",\"timeStamp\":\"" + timeStamp + "\",\"nonceStr\":\"" + nonceStr1
+				+ "\",\"package\":\"" + packages + "\",\"signType\" : \"MD5" + "\",\"paySign\":\"" + paySign + "\"";
+
+		Map<String, String> params = new HashMap<>();
+		params.put("timeStamp", timeStamp);
+		params.put("nonceStr", nonceStr1);
+		params.put("package", packages);
+		params.put("signType", "MD5");
+		params.put("paySign", paySign);
+
+		response.put("status", 1);
+		response.put("data", params);
+		jsonResponse(response);
+
+		return SUCCESS;
+	}
 
 	// 发起微信支付
 	public String pay() {
@@ -620,10 +616,9 @@ public class ControlAction extends BaseAction {
 		// + "<attach>" + attach + "</attach>"
 		String xml = "<xml>" + "<appid>" + appid + "</appid>" + "<body>" + body + "</body>" + "<mch_id>" + mchId
 				+ "</mch_id>" + "<nonce_str>" + nonceStr + "</nonce_str>" + "<notify_url>" + notifyUrl + "</notify_url>"
-				+ "<openid>" + openId + "</openid>" + "<out_trade_no>" + outTradeNo + "</out_trade_no>"
-				+ "<spbill_create_ip>" + spbillCreateIp + "</spbill_create_ip>" + "<total_fee>" + totalFee
-				+ "</total_fee>" + "<trade_type>" + tradeType + "</trade_type>" + "<sign>" + sign + "</sign>"
-				+ "</xml>";
+				+ "<openid>" + openId + "</openid>" + "<out_trade_no>" + outTradeNo + "</out_trade_no>" + "<spbill_create_ip>"
+				+ spbillCreateIp + "</spbill_create_ip>" + "<total_fee>" + totalFee + "</total_fee>" + "<trade_type>"
+				+ tradeType + "</trade_type>" + "<sign>" + sign + "</sign>" + "</xml>";
 		logger.debug(xml);
 		// 统一下单url，生成预付id
 		String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
@@ -648,9 +643,8 @@ public class ControlAction extends BaseAction {
 				+ "&signType=MD5&timeStamp=" + timeStamp;
 		String paySign = WxPayUtil.sign(mapStr1, key, "utf-8").toUpperCase();
 		// 前端所需各项参数拼接
-		String finaPackage = "\"appId\":\"" + appid + "\",\"timeStamp\":\"" + timeStamp + "\",\"nonceStr\":\""
-				+ nonceStr1 + "\",\"package\":\"" + packages + "\",\"signType\" : \"MD5" + "\",\"paySign\":\"" + paySign
-				+ "\"";
+		String finaPackage = "\"appId\":\"" + appid + "\",\"timeStamp\":\"" + timeStamp + "\",\"nonceStr\":\"" + nonceStr1
+				+ "\",\"package\":\"" + packages + "\",\"signType\" : \"MD5" + "\",\"paySign\":\"" + paySign + "\"";
 
 		Map<String, String> params = new HashMap<>();
 		params.put("timeStamp", timeStamp);
@@ -699,8 +693,7 @@ public class ControlAction extends BaseAction {
 				// 进行签名验证，看是否是从微信发送过来的，防止资金被盗
 				if (WxPayUtil.verifyWeixinNotify(map, key) || debug) {
 					// 设置订单信息
-					TradingOrderManager orderManager = (TradingOrderManager) ApplicationUtil.act
-							.getBean("tradingOrderManager");
+					TradingOrderManager orderManager = (TradingOrderManager) ApplicationUtil.act.getBean("tradingOrderManager");
 					UserManager userManager = (UserManager) ApplicationUtil.act.getBean("userManager");
 
 					float cashFee = 0;
@@ -720,8 +713,7 @@ public class ControlAction extends BaseAction {
 					// 如果是预充值订单，则给用户充值
 					if (order.getType().equals("2")) {
 						User user = order.getUser();
-						double newBalance = Double.parseDouble(order.getTotalprice())
-								+ Double.parseDouble(user.getBalance());
+						double newBalance = Double.parseDouble(order.getTotalprice()) + Double.parseDouble(user.getBalance());
 						BigDecimal bd = new BigDecimal(newBalance);
 						bd = bd.setScale(2, RoundingMode.HALF_UP);
 						newBalance = bd.doubleValue();
@@ -750,8 +742,8 @@ public class ControlAction extends BaseAction {
 		} catch (IOException | DocumentException e) {
 			logger.error("PaymentCallback Error:" + e.getMessage(), e);
 		}
-		resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
-				+ "<return_msg><![CDATA[xml error]]></return_msg>" + "</xml> ";
+		resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>" + "<return_msg><![CDATA[xml error]]></return_msg>"
+				+ "</xml> ";
 		result(resXml);
 	}
 
@@ -908,16 +900,13 @@ public class ControlAction extends BaseAction {
 				final Order order = orderManager.getOrder(data.getInt("orderid"));
 
 				if (order == null) {
-					throw new WebSocketRuntimeException(SocketRuntimeException.DEFAULT_ERROR_CODE, "抱歉，查询不到您的订单信息",
-							session);
+					throw new WebSocketRuntimeException(SocketRuntimeException.DEFAULT_ERROR_CODE, "抱歉，查询不到您的订单信息", session);
 				}
 				if (!user.equals(order.getUser())) {
-					throw new WebSocketRuntimeException(SocketRuntimeException.DEFAULT_ERROR_CODE, "用户信息与订单信息不符",
-							session);
+					throw new WebSocketRuntimeException(SocketRuntimeException.DEFAULT_ERROR_CODE, "用户信息与订单信息不符", session);
 				}
 				if (lattice.equals(order.getDevice())) {
-					throw new WebSocketRuntimeException(SocketRuntimeException.DEFAULT_ERROR_CODE, "订单信息与扫码信息不匹配",
-							session);
+					throw new WebSocketRuntimeException(SocketRuntimeException.DEFAULT_ERROR_CODE, "订单信息与扫码信息不匹配", session);
 				}
 				OpenLockCallback openLockCallback = new OpenLockCallback(lattice, user, session);
 				openLockCallback.setOrder(order);
@@ -965,8 +954,7 @@ public class ControlAction extends BaseAction {
 	// 查询订单可以还回的格子窗口
 	public void queryLattices() {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		TradingOrderManager tradingOrderManager = (TradingOrderManager) ApplicationUtil.act
-				.getBean("tradingOrderManager");
+		TradingOrderManager tradingOrderManager = (TradingOrderManager) ApplicationUtil.act.getBean("tradingOrderManager");
 		int id = 0;
 		try {
 			String postedData = IOUtils.toString(request.getInputStream());

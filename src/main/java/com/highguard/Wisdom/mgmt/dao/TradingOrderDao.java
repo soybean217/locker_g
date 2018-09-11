@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -25,6 +26,8 @@ import com.highguard.Wisdom.util.BasePath;
 @Repository
 public class TradingOrderDao {
 
+	static private Logger logger = Logger.getLogger(TradingOrderDao.class);
+
 	@Resource
 	SessionFactory factory;
 	//// 主表
@@ -33,6 +36,9 @@ public class TradingOrderDao {
 		String sql = "select count(*) from orderr o where 1=1 ";
 		if (map.get("deciceId") != null && !"".equals(map.get("deciceId"))) {
 			sql += " and o.deviceid='" + map.get("deciceId") + "'";
+		}
+		if (map.get("managerId") != null && !"".equals(map.get("managerId"))) {
+			sql += " and o.managerId='" + map.get("managerId") + "'";
 		}
 		Query query = factory.getCurrentSession().createSQLQuery(sql);
 		return Integer.parseInt(query.uniqueResult().toString());
@@ -164,6 +170,7 @@ public class TradingOrderDao {
 	}
 
 	public void addOrder(Order order) {
+		logger.debug(order.toString());
 		factory.getCurrentSession().saveOrUpdate(order);
 	}
 
@@ -229,6 +236,7 @@ public class TradingOrderDao {
 	}
 
 	public void addTradingOrder(TradingOrder tradingOrder) {
+		logger.debug(tradingOrder.toString());
 		factory.getCurrentSession().save(tradingOrder);
 	}
 

@@ -7,10 +7,10 @@
 		<id name="id" type="java.lang.Integer" unsaved-value="null">
 			<generator class="native" />
 		</id>
-		<property name="deviceid" type="java.lang.Integer" />
 		<property name="lockid" type="java.lang.String" />
 		<property name="qrcode" type="java.lang.String" />
 		<property name="fruitid" type="java.lang.Integer" />
+		<property name="deviceid" type="java.lang.Integer" />
 		<property name="fruit" type="java.lang.String" />
 		<property name="type" type="java.lang.Integer" />
 		<property name="price" type="java.lang.String" />
@@ -22,7 +22,7 @@
 		<property name="promotionprice" type="java.lang.String" />
 		<property name="promotionweight" type="java.lang.String" />
 		<property name="promotiontime" type="java.lang.String" />
-
-		<one-to-one name="icport" property-ref="lattice" lazy="false" cascade="save-update" />
+		 <one-to-one name="icport" property-ref="lattice" lazy="false" cascade="save-update" 
+			/> 
 	</class>
 </hibernate-mapping>

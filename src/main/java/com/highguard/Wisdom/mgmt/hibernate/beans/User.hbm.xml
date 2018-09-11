@@ -17,22 +17,22 @@
 		<property name="telephone" type="java.lang.String" />
 		<property name="address" type="java.lang.String" />
 		<property name="sfzphoto" type="java.sql.Blob" />
-		<property name="otherphoto" type="java.sql.Blob" />	
+		<property name="otherphoto" type="java.sql.Blob" />
 		<property name="balance" type="java.lang.String" />
 		<property name="checkbalance" type="java.lang.String" />
 		<property name="consumption" type="java.lang.String" />
 		<property name="createtime" type="java.lang.String" />
-		<property name="uuid" type="java.lang.String" />	
-        <property name="type" type="java.lang.String" />	
-        <property name="num" type="java.lang.String" />	
-        <property name="status" type="java.lang.String" />	
-        <property name="yzTime" type="java.lang.String" />	
-        <property name="loginToken" type="java.lang.String" />
-        <property name="smTime" type="java.lang.String" />
-        <property name="czTime" type="java.lang.String" />
-        <property name="lastpaytime" type="java.lang.String" />
-        <property name="lastlattice" type="java.lang.String" />
-        <property name="lastdevice" type="java.lang.String" />
-        <property name="outcardnumber" type="java.lang.String" />
+		<property name="uuid" type="java.lang.String" />
+		<property name="type" type="java.lang.String" />
+		<property name="num" type="java.lang.String" />
+		<property name="status" type="java.lang.String" />
+		<property name="yzTime" type="java.lang.String" />
+		<property name="loginToken" type="java.lang.String" />
+		<property name="smTime" type="java.lang.String" />
+		<property name="czTime" type="java.lang.String" />
+		<property name="lastpaytime" type="java.lang.String" />
+		<property name="lastlattice" type="java.lang.String" />
+		<property name="lastdevice" type="java.lang.String" />
+		<property name="outcardnumber" type="java.lang.String" />
 	</class>
 </hibernate-mapping>

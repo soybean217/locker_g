@@ -39,7 +39,7 @@
 		</global-results>
 		<!-- 系统维护 -->
 		<action name="login" class="loginAction">
-			<result name="successAdmin">/pages/main.jsp</result>
+			<result >/pages/main.jsp</result>
 			<result name="successStore">/pages/mainStore.jsp</result>
 			<result name="input">/pages/login.jsp</result>
 			<result name="printAdmin">/pages/printadmin.jsp</result>

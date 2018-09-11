@@ -13,6 +13,7 @@
 		<property name="copies" type="java.lang.String" />
 		<property name="price" type="java.lang.String" />
 		<property name="userid" type="java.lang.Integer" />
+		<property name="managerId" type="java.lang.Integer" />
 		<property name="place" type="java.lang.String" />
 		<property name="imageurl" type="java.lang.String" />
 		<property name="texture" type="java.lang.String" />

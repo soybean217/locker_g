@@ -10,18 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.highguard.Wisdom.logging.WisdomLogger;
 import com.highguard.Wisdom.mgmt.hibernate.beans.Device;
 import com.highguard.Wisdom.mgmt.hibernate.beans.Fruit;
 import com.highguard.Wisdom.mgmt.hibernate.beans.Lattice;
@@ -39,6 +34,9 @@ import com.highguard.Wisdom.util.JsonUtil;
 import com.highguard.Wisdom.util.StringUtil;
 import com.opensymphony.xwork2.ActionContext;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 /**
  * 订单接口
  * 
@@ -49,6 +47,13 @@ import com.opensymphony.xwork2.ActionContext;
 @Scope("prototype")
 public class TradingApiAction extends ApiBaseAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private static Logger logger = Logger.getLogger(TradingApiAction.class);
+	
 	@Resource
 	DeviceManager deviceManager;
 	@Resource
@@ -145,13 +150,12 @@ public class TradingApiAction extends ApiBaseAction {
 		Map<String, Object> orderSearchmap = new HashMap<String, Object>();
 		if (ctx.getSession().get("userInfo") != null) {
 			if (((SystemUser) ctx.getSession().get("userInfo")).getRole_id() == 2) {
-				deviceSearchmap.put("storeId", ((SystemUser) ctx.getSession().get("userInfo")).getId().toString());
-				orderSearchmap.put("storeid", ((SystemUser) ctx.getSession().get("userInfo")).getId());
+				deviceSearchmap.put("managerid", ((SystemUser) ctx.getSession().get("userInfo")).getId().toString());
+				orderSearchmap.put("managerId", ((SystemUser) ctx.getSession().get("userInfo")).getId());
 			}
-		}else {
+		}else if (ctx.getSession().get("user")==null) {
 			return INPUT;
 		}
-
 		List<Device> device = deviceManager.getDeviceList(-1, -1, deviceSearchmap);
 		deviceMap.put("", "-- 请选择 --");
 		for (int i = 0; i < device.size(); i++) {
@@ -194,7 +198,7 @@ public class TradingApiAction extends ApiBaseAction {
 		while (a.hasMoreElements()) {
 			url += a.nextElement() + ",";
 		}
-		WisdomLogger.logInfo("getTradingOrder", "url=" + url);
+//		WisdomLogger.logInfo("getTradingOrder", "url=" + url);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("phone", phone);
 		String uid = "-1";
@@ -231,24 +235,24 @@ public class TradingApiAction extends ApiBaseAction {
 	public void addTradingOrder() {
 		try {
 
-			WisdomLogger.logInfo("addTradingOrder", "orderPlaceId=" + orderPlaceId + " orderinfo=" + orderinfo + " userId="
-					+ userId + " usertyp=" + usertype + " phone=" + phone);
+//			WisdomLogger.logInfo("addTradingOrder", "orderPlaceId=" + orderPlaceId + " orderinfo=" + orderinfo + " userId="
+//					+ userId + " usertyp=" + usertype + " phone=" + phone);
 			if (StringUtil.isEmpty(orderPlaceId)) {
-				WisdomLogger.logInfo("addTradingOrder", "收货地址不能为空，请检查！");
+//				WisdomLogger.logInfo("addTradingOrder", "收货地址不能为空，请检查！");
 				writeToFrontPage(JsonUtil.JsonMsg(false, "500", "收货地址不能为空，请检查！"));
 				return;
 			} else if (StringUtil.isEmpty(phone)) {
-				WisdomLogger.logInfo("addTradingOrder", "手机号不能为空，请检查！");
+//				WisdomLogger.logInfo("addTradingOrder", "手机号不能为空，请检查！");
 				writeToFrontPage(JsonUtil.JsonMsg(false, "500", "手机号不能为空，请检查！"));
 				return;
 			} else if (StringUtil.isEmpty(usertype)) {
-				WisdomLogger.logInfo("addTradingOrder", "usertype不能为空，请检查！");
+//				WisdomLogger.logInfo("addTradingOrder", "usertype不能为空，请检查！");
 				writeToFrontPage(JsonUtil.JsonMsg(false, "500", "usertype不能为空，请检查！"));
 				return;
 			}
 
 			if (usertype.equals("null") || userId.equals("null")) {
-				WisdomLogger.logInfo("addTradingOrder", "用户ID 或者 用户类型为空 ");
+//				WisdomLogger.logInfo("addTradingOrder", "用户ID 或者 用户类型为空 ");
 				writeToFrontPage(JsonUtil.JsonMsg(false, "500", "用户ID 或者 用户类型为空"));
 				return;
 			}
@@ -257,17 +261,17 @@ public class TradingApiAction extends ApiBaseAction {
 				// 获取收货地址
 				OrderPlace orderPlace = orderPlaceManager.getOrderPlace(Integer.parseInt(orderPlaceId));
 				if (StringUtil.isEmpty(orderPlace)) {
-					WisdomLogger.logInfo("addTradingOrder", "orderPlaceId参数不符合规范，请检查");
+//					WisdomLogger.logInfo("addTradingOrder", "orderPlaceId参数不符合规范，请检查");
 					writeToFrontPage(JsonUtil.JsonMsg(false, "500", "orderPlaceId参数不符合规范，请检查！"));
 					return;
 				}
 				if (orderinfo.split(",").length < 1) {
-					WisdomLogger.logInfo("addTradingOrder", "没有选择水果");
+//					WisdomLogger.logInfo("addTradingOrder", "没有选择水果");
 					writeToFrontPage(JsonUtil.JsonMsg(false, "500", "没有选择水果"));
 					return;
 				}
 				if (userId == null || "".equals(userId)) {
-					WisdomLogger.logInfo("addTradingOrder", "userId 为空");
+//					WisdomLogger.logInfo("addTradingOrder", "userId 为空");
 					writeToFrontPage(JsonUtil.JsonMsg(false, "500", "userId 为空"));
 					return;
 				}
@@ -290,15 +294,17 @@ public class TradingApiAction extends ApiBaseAction {
 					String copies = orderstr[i].split(":")[1];
 					Lattice lattice = deviceManager.getLatticeById(Integer.parseInt(latticeid));
 					if (latticeid == null) {
-						WisdomLogger.logInfo("addTradingOrder", "latticeid = " + latticeid + " 不存在");
+//						WisdomLogger.logInfo("addTradingOrder", "latticeid = " + latticeid + " 不存在");
 						writeToFrontPage(JsonUtil.JsonMsg(false, "500", "latticeid 为空"));
 						return;
 					}
 					ord.setDeviceid(lattice.getDeviceid());
+					Device device = deviceManager.getDeviceById(lattice.getDeviceid());
+					
 					Fruit fruit = fruitManager.getFruitById(lattice.getFruitid());
 					double price = Double.parseDouble(
 							(lattice.getCopyprice() == null || "".equals(lattice.getCopyprice())) ? "0" : lattice.getCopyprice());// 每份单价
-					WisdomLogger.logInfo("addTradingOrder", "Copyprice = " + price);
+//					WisdomLogger.logInfo("addTradingOrder", "Copyprice = " + price);
 					double totprice = price * (Integer.parseInt(copies));
 					TradingOrder order = new TradingOrder();
 					order.setLatticeid(lattice.getId());
@@ -309,6 +315,7 @@ public class TradingApiAction extends ApiBaseAction {
 					order.setPlace(fruit.getPlace());
 					order.setTexture(fruit.getTexture());
 					order.setImageurl(fruit.getImageurl());
+					order.setManagerId(device.getManagerid());
 					tradingOrderManager.addTradingOrder(order);
 					totalprice += totprice;
 				}
@@ -336,7 +343,7 @@ public class TradingApiAction extends ApiBaseAction {
 			tradingOrderManager.deleteOrder(Integer.parseInt(id));
 			writeToFrontPage(JsonUtil.JsonMsg(true, "", "删除成功"));
 		} else {
-			WisdomLogger.logInfo("deleteOrder", "请补齐参数");
+//			WisdomLogger.logInfo("deleteOrder", "请补齐参数");
 			writeToFrontPage(JsonUtil.JsonMsg(false, "", "请补齐参数！"));
 		}
 	}
@@ -345,7 +352,7 @@ public class TradingApiAction extends ApiBaseAction {
 		if (id != null && !"".equals(id)) {
 			TradingOrder tradingOrder = tradingOrderManager.getTradingOrder(Integer.parseInt(id));
 			if (tradingOrder == null) {
-				WisdomLogger.logInfo("deleteTradingOrder", "订单不存在");
+//				WisdomLogger.logInfo("deleteTradingOrder", "订单不存在");
 				writeToFrontPage(JsonUtil.JsonMsg(false, "", "订单不存在！"));
 				return;
 			}
@@ -358,7 +365,7 @@ public class TradingApiAction extends ApiBaseAction {
 			tradingOrderManager.addOrder(order);
 			writeToFrontPage(JsonUtil.JsonMsg(true, "", "删除成功"));
 		} else {
-			WisdomLogger.logInfo("deleteOrder", "请补齐参数");
+//			WisdomLogger.logInfo("deleteOrder", "请补齐参数");
 			writeToFrontPage(JsonUtil.JsonMsg(false, "", "请补齐参数！"));
 		}
 	}
@@ -370,7 +377,7 @@ public class TradingApiAction extends ApiBaseAction {
 		if (id != null && !"".equals(id)) {
 			Order order = tradingOrderManager.getOrder(Integer.parseInt(id));
 			if (StringUtil.isEmpty(order)) {
-				WisdomLogger.logInfo("payOrder", "id参数不符合规范，请检查");
+//				WisdomLogger.logInfo("payOrder", "id参数不符合规范，请检查");
 				writeToFrontPage(JsonUtil.JsonMsg(false, "500", "id参数不符合规范，请检查！"));
 				return;
 			}
@@ -379,7 +386,7 @@ public class TradingApiAction extends ApiBaseAction {
 			double yu = Double.valueOf(user.getBalance());
 
 			if (price > yu) {
-				WisdomLogger.logInfo("payOrder", "余额不足，无法支付" + user.getName());
+//				WisdomLogger.logInfo("payOrder", "余额不足，无法支付" + user.getName());
 				writeToFrontPage(JsonUtil.JsonMsg(false, "", "余额不足，无法支付！"));
 			} else {
 				double newyu = yu - price;// 消费后的余额

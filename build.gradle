@@ -60,7 +60,10 @@ compile group: 'org.logicalcobwebs', name: 'com.springsource.org.logicalcobwebs.
 // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
 compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.10'
 // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-compile group: 'mysql', name: 'mysql-connector-java', version: '3.1.14'
+//compile group: 'mysql', name: 'mysql-connector-java', version: '3.1.14'
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.47'
+//compile 'mysql:mysql-connector-java:6.0.6:jdk17' 
 // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
 compile group: 'com.itextpdf', name: 'itextpdf', version: '5.3.4'
 // https://mvnrepository.com/artifact/org.tuckey/urlrewrite

@@ -14,23 +14,40 @@ public class Lattice {
 	private String qrcode;// 二维码地址
 	private Integer fruitid;// 水果ID
 	private String price;// 价格
-    private String fruit;
-    private String weight;
-    private String status;//开锁状态
-    private String date;//允许开锁时间
-    private String copynum;//每份数量 （几个水果）
-    private String copyprice;//每份价格 
-    
-    private Integer ispromotion; // 是否开启促销 ，0，否 1：是
-    private String  promotionprice; // 促销价格
-    private String  promotionweight; //  促销阀值
-    private String  promotiontime; // 开启促销的时间
+	private String fruit;
+	private String weight;
+	private String status;// 开锁状态
+	private String date;// 允许开锁时间
+	private String copynum;// 每份数量 （几个水果）
+	private String copyprice;// 每份价格
+
+	private Integer ispromotion; // 是否开启促销 ，0，否 1：是
+	private String promotionprice; // 促销价格
+	private String promotionweight; // 促销阀值
+	private String promotiontime; // 开启促销的时间
 
 	private Integer type;
 
 	private ICPort icport;
-    
-	 
+	private Device device;
+
+	@Override
+	public String toString() {
+		return "Lattice [id=" + id + ", deviceid=" + deviceid + ", lockid=" + lockid + ", qrcode=" + qrcode + ", fruitid="
+				+ fruitid + ", price=" + price + ", fruit=" + fruit + ", weight=" + weight + ", status=" + status + ", date="
+				+ date + ", copynum=" + copynum + ", copyprice=" + copyprice + ", ispromotion=" + ispromotion
+				+ ", promotionprice=" + promotionprice + ", promotionweight=" + promotionweight + ", promotiontime="
+				+ promotiontime + ", type=" + type + ", icport=" + icport + "]";
+	}
+
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
 	public String getPromotiontime() {
 		return promotiontime;
 	}

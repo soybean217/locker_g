@@ -1,107 +1,113 @@
 package com.highguard.Wisdom.struts.listener;
 
-import com.highguard.Wisdom.exception.SocketRuntimeException;
-import com.highguard.Wisdom.exception.WebSocketRuntimeException;
-import com.highguard.Wisdom.mgmt.hibernate.beans.*;
-import com.highguard.Wisdom.mgmt.manager.DeviceManager;
-import com.highguard.Wisdom.mgmt.manager.IcportManager;
-import com.highguard.Wisdom.mgmt.manager.TradingOrderManager;
-import com.highguard.Wisdom.struts.actions.wxapp.WebSocket;
-import com.highguard.Wisdom.struts.common.WxApp;
-import com.highguard.Wisdom.util.CommandUtils;
-import com.highguard.Wisdom.util.CommunityUtils;
-import net.sf.json.JSONObject;
-
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.highguard.Wisdom.exception.SocketRuntimeException;
+import com.highguard.Wisdom.exception.WebSocketRuntimeException;
+import com.highguard.Wisdom.mgmt.hibernate.beans.Device;
+import com.highguard.Wisdom.mgmt.hibernate.beans.Lattice;
+import com.highguard.Wisdom.mgmt.hibernate.beans.Order;
+import com.highguard.Wisdom.mgmt.hibernate.beans.User;
+import com.highguard.Wisdom.mgmt.manager.DeviceManager;
+import com.highguard.Wisdom.mgmt.manager.TradingOrderManager;
+import com.highguard.Wisdom.util.CommandUtils;
+import com.highguard.Wisdom.util.CommunityUtils;
+
+import net.sf.json.JSONObject;
+
 /**
- * Created by ws on 2017/7/4.
- * 往设备发送开锁指令，每隔一段时间发送一次，知道收到反馈开锁成功，生成订单
+ * Created by ws on 2017/7/4. 往设备发送开锁指令，每隔一段时间发送一次，知道收到反馈开锁成功，生成订单
  */
-public class OpenLockCallback extends MainThreadCallback{
+public class OpenLockCallback extends MainThreadCallback {
 
-    private User mUser;
-    private HttpSession mSession;
-    private Thread openLockThread;
-    private boolean opening = true;
-    private CommandUtils.DeviceStatus mStatus;
-    private Order mOrder;
-    private boolean isGiveback = false;
-    private String mAction;
-    private JSONObject mData;
+	private User mUser;
+	private HttpSession mSession;
+	private Thread openLockThread;
+	private boolean opening = true;
+	private CommandUtils.DeviceStatus mStatus;
+	private Order mOrder;
+	private boolean isGiveback = false;
+	private String mAction;
+	private JSONObject mData;
 
-    private boolean onlyOpen = false;
+	private boolean onlyOpen = false;
 
-    public OpenLockCallback(Lattice lattice, User user, HttpSession sesison){
-        super(lattice);
-        mUser = user;
-        mSession = sesison;
-        onece = true;
-    }
+	public OpenLockCallback(Lattice lattice, User user, HttpSession sesison) {
+		super(lattice);
+		mUser = user;
+		mSession = sesison;
+		onece = true;
+	}
 
-    public void setOnlyOpen(boolean onlyOpen){
-        this.onlyOpen = onlyOpen;
-    }
+	public void setOnlyOpen(boolean onlyOpen) {
+		this.onlyOpen = onlyOpen;
+	}
 
-    public void setData(JSONObject data){
-        mData = data;
-    }
+	public void setData(JSONObject data) {
+		mData = data;
+	}
 
-    public void setOrder(Order order){
-        mOrder = order;
-    }
+	public void setOrder(Order order) {
+		mOrder = order;
+	}
 
-    public void setAction(String action){
-        mAction = action;
-    }
+	public void setAction(String action) {
+		mAction = action;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
+	@Override
+	public boolean equals(Object obj) {
 
-        if( obj instanceof OpenLockCallback ){
-            OpenLockCallback callback = (OpenLockCallback)obj;
-            return callback.getLattice().getId().equals(this.getLattice().getId()) && (callback.isGiveback == this.isGiveback);
-        }
+		if (obj instanceof OpenLockCallback) {
+			OpenLockCallback callback = (OpenLockCallback) obj;
+			return callback.getLattice().getId().equals(this.getLattice().getId())
+					&& (callback.isGiveback == this.isGiveback);
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public void setIsGiveback(boolean giveback){
-        this.isGiveback = giveback;
-    }
+	public void setIsGiveback(boolean giveback) {
+		this.isGiveback = giveback;
+	}
 
-    public void openLock(){
-        //循环发送开锁指令
-        openLockThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(opening) {
-                    //发送开锁指令
-                    String command = CommandUtils.makeOpenlock(mLattice);
-                    thread.sendMessage(command);
-                    opening = false;
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        openLockThread.start();
-    }
-    @Override
-    boolean match(String[] tokens) {
-        //门开的指令
-        mStatus = CommandUtils.readStatus(mLattice, tokens);
-        return mStatus != null;
-    }
+	public void openLock() {
+		// 循环发送开锁指令
+		openLockThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (opening) {
+					// 发送开锁指令
+					String command = CommandUtils.makeOpenlock(mLattice);
+					thread.sendMessage(command);
+					opening = false;
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		openLockThread.start();
+	}
 
-    @Override
+	@Override
+	boolean match(String[] tokens) {
+		// 门开的指令
+		mStatus = CommandUtils.readStatus(mLattice, tokens);
+		return mStatus != null;
+	}
+
+	@Override
     boolean callback(String[] tokens) {
         if( onlyOpen ){
             return true;
@@ -117,11 +123,15 @@ public class OpenLockCallback extends MainThreadCallback{
             else if(mStatus.lock == 0 && mStatus.toy == 1){
                 //门关上了，行李在，生成订单
                 TradingOrderManager tradingOrderManager = (TradingOrderManager) ApplicationUtil.act.getBean("tradingOrderManager");
+                DeviceManager deviceManager = (DeviceManager) ApplicationUtil.act.getBean("deviceManager");
                 Lattice lattice = mLattice;
                 if (lattice == null) {
                     throw new WebSocketRuntimeException(SocketRuntimeException.DEVICEID_NOTFOUND, "找不到控制器ID", mSession);
                 }
-
+                logger.debug(mLattice);
+                logger.debug(deviceManager);
+//                Device device = deviceManager.getDeviceById(mLattice.getDeviceid());
+                logger.debug(lattice);
                 Order order = new Order();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 order.setCreatetime(sdf.format(new Date()));
@@ -133,8 +143,8 @@ public class OpenLockCallback extends MainThreadCallback{
                 order.setUser(mUser);
                 order.setDevice(lattice);
                 order.setOrdersn(tradingOrderManager.getOrderIdByUUId());
+                order.setManagerId(deviceManager.getDeviceById(lattice.getDeviceid()).getManagerid());
                 tradingOrderManager.addOrder(order);
-
 
                 CommunityUtils.writeUserMessage(mSession, "寄存成功", 0);
                 return true;

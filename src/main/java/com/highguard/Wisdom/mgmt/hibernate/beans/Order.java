@@ -29,12 +29,21 @@ public class Order {
 	private Integer storeid;
 	private String givebacktime;
 	private String transactionId;
+	private Integer managerId;
 
 	private Lattice device;
 	private ICPort icport;
 	private User user;
 
 	private float pay;
+
+	public Integer getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Integer managerId) {
+		this.managerId = managerId;
+	}
 
 	public Integer getStoreid() {
 		return storeid;
@@ -218,5 +227,15 @@ public class Order {
 
 	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", ordersn=" + ordersn + ", createtime=" + createtime + ", paytime=" + paytime
+				+ ", state=" + state + ", type=" + type + ", userid=" + userid + ", phone=" + phone + ", totalprice="
+				+ totalprice + ", quantity=" + quantity + ", orderPlace=" + orderPlace + ", freight=" + freight + ", isSend="
+				+ isSend + ", show=" + show + ", deviceid=" + deviceid + ", icportid=" + icportid + ", storeid=" + storeid
+				+ ", givebacktime=" + givebacktime + ", transactionId=" + transactionId + ", managerId=" + managerId
+				+ ", device=" + device + ", icport=" + icport + ", user=" + user + ", pay=" + pay + "]";
 	}
 }

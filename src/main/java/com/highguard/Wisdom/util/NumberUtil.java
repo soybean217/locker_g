@@ -2,8 +2,6 @@ package com.highguard.Wisdom.util;
 
 import java.util.Random;
 
-import com.mysql.jdbc.MiniAdmin;
-
 public class NumberUtil {
 	public static int randomNumber(int min,int max) {
         Random random = new Random();
