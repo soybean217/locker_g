@@ -101,13 +101,13 @@ public class SocketToLattice  extends Thread {
 	private PrintWriter out;
 	private String lattice;//设备地址
 	private String card;   //用户的ic卡号
-	private Logger logger; 
+	private LoggerLocal logger; 
 	public  GetPathCommon common = new GetPathCommon();	
 	private int threadNumber = 0;
 	// 用户重置信息
 	private final static HashMap<String,PayInfo> payMoney = new HashMap<String,PayInfo>();
 
-	public SocketToLattice(Socket socket, Logger log, int threadNumber_ ) { // 构造函数  
+	public SocketToLattice(Socket socket, LoggerLocal log, int threadNumber_ ) { // 构造函数  
 		this.logger = log;
 		this.socket = socket; // 初始化socket变量  
 		this.threadNumber = threadNumber_;

@@ -13,7 +13,7 @@ import java.util.Date;
  * 
  * @author 张卫广
  * */
-public class Logger {
+public class LoggerLocal {
 
 	private String filePath = "";
 	
@@ -26,7 +26,7 @@ public class Logger {
 	 * 构造函数，需要传入生产的日志名称,如：Action.Log
 	 * 
 	 */
-	public Logger(String loggername) {
+	public LoggerLocal(String loggername) {
 		File file = new File("/var/log/bangbang/socket-log"+File.separator+loggername);
 		if(  !file.exists() ){
 			 file.mkdirs();
@@ -36,7 +36,7 @@ public class Logger {
 	}
 
 
-	public Logger() {
+	public LoggerLocal() {
 		this.LoggerName = "Logger";
 	}
 

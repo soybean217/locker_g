@@ -9,6 +9,7 @@ import javax.servlet.ServletContextListener;
 public class SocketListner implements ServletContextListener{
 
 	private static SocketThered socket ;
+	private static UdpThread udpThread ;
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		socket.closeAllSocket();
@@ -21,6 +22,10 @@ public class SocketListner implements ServletContextListener{
 		}
 		MDC.put("userId", "0");
 		socket.start();
+		if (null==udpThread) {
+			udpThread = new UdpThread();
+			udpThread.start();
+		}
 	}
 
 
