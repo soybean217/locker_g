@@ -6,7 +6,7 @@
 <%
 	//project_key=v32xEAKsGTIEQxtqgwCldp5aPlcnPs3K&imei=868575021881489&device_key=4PvXDLsMAIYNHY0n&firmware_name=LUG_POPBOT_CN_LOCKER_Luat_V0027_8955&version=1.0.0
 	Logger logger = Logger.getLogger(this.getClass());
-	String dir = application.getRealPath("/") + "\\update\\";
+	String dir = application.getRealPath("/") + "/update/";
 	FileAndFolderUtil fileAndFolderUtil = new FileAndFolderUtil();
 	List<File> files = fileAndFolderUtil.getFilesFromFolder(dir);
 	Collections.sort(files);
