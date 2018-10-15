@@ -43,43 +43,26 @@ public class LoginAction extends BaseAction {
 	public String execute() {
 		// log start
 		ActionContext ctx = ActionContext.getContext();
-		if (username.equals("admin")) {
-			if (password.equals("password")) {
+		String passwordMd5 = StringUtil.MD5Encode(password);
+		logger.debug(passwordMd5);
+		SystemUser user = systemUserManager.getUserByNameAndPassword(username, passwordMd5);
+		if (user != null) {
+			logger.debug("manager login user:" + user.toString());
+			ctx.getSession().put("user", username);
+			ctx.getSession().put("userInfo", user);
+			if (username.equals("admin") || username.equals("secadmin")) {
 				ctx.getSession().put("userInfo", null);
-				ctx.getSession().put("user", username);
 				ctx.getSession().put("deptid", Integer.parseInt("1"));
 				ctx.getSession().put("group", Integer.parseInt("60"));
+			}
+			if (user.getRole_id() == 1) {
 				return SUCCESS;
+			} else if (user.getRole_id() == 2) {
+				return "successStore";
 			} else {
 				this.addFieldError("login", getText("账户名或者密码错误"));
 				return INPUT;
 			}
-		} else if (username.equals("secadmin")) {
-			if (password.equals("password123456")) {
-				ctx.getSession().put("userInfo", null);
-				ctx.getSession().put("user", username);
-				ctx.getSession().put("deptid", Integer.parseInt("1"));
-				ctx.getSession().put("group", Integer.parseInt("60"));
-				return SUCCESS;
-			} else {
-				this.addFieldError("login", getText("账户名或者密码错误"));
-				return INPUT;
-			}
-		} else {
-			String passwordMd5 = StringUtil.MD5Encode(password);
-			logger.debug(passwordMd5);
-			SystemUser user = systemUserManager.getUserByNameAndPassword(username, passwordMd5);
-			if (user != null) {
-				logger.debug("manager login user:" + user.toString());
-				ctx.getSession().put("user", username);
-				ctx.getSession().put("userInfo", user);
-				if (user.getRole_id() == 1) {
-					return SUCCESS;
-				} else if (user.getRole_id() == 2) {
-					return "successStore";
-				} else {
-					return INPUT;
-				}
 //				for(User u : users){
 //					if(StringUtils.isNotBlank(password) && password.equals(u.getPassword())){
 //						if(null != u.getDeptid()){
@@ -92,11 +75,9 @@ public class LoginAction extends BaseAction {
 
 //					}
 //				}
-			}
-//			this.addFieldError("login", getText("账户名或者密码错误"));
-			return INPUT;
 		}
-
+//			this.addFieldError("login", getText("账户名或者密码错误"));
+		return INPUT;
 	}
 
 	@Override
