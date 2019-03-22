@@ -1,5 +1,8 @@
 package com.highguard.Wisdom.struts.actions;
 
+import com.github.qcloudsms.SmsSingleSender;
+import com.github.qcloudsms.SmsSingleSenderResult;
+import com.github.qcloudsms.httpclient.HTTPException;
 import com.highguard.Wisdom.exception.SocketRuntimeException;
 import com.highguard.Wisdom.exception.WebSocketRuntimeException;
 import com.highguard.Wisdom.mgmt.hibernate.beans.*;
@@ -24,6 +27,7 @@ import org.apache.struts2.ServletActionContext;
 import org.dom4j.DocumentException;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
+import org.json.JSONException;
 import org.junit.internal.runners.statements.Fail;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -68,13 +72,32 @@ public class ControlAction extends BaseAction {
 
 		JSONObject response = new JSONObject();
 		try {
-			ShortMessageUtils.sendSMSGet(mobile, "您的验证码是：" + key, "");
+			//old sms provider
+			//ShortMessageUtils.sendSMSGet(mobile, "您的验证码是：" + key, ""); 
+			String[] params = { key,"5" };
+			SmsSingleSender ssender = new SmsSingleSender(1400167573, "06b26763070fb808086a102baddf2c27");
+			try {
+				SmsSingleSenderResult result = ssender.sendWithParam("86", mobile, 240864, params, null, "", "");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (HTTPException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // 签名参数未提供或者为空时，会使用默认签名发送短信
 			jsonResponse(response);
-		} catch (MalformedURLException e) {
-			jsonError(e.getMessage());
-		} catch (UnsupportedEncodingException e) {
-			jsonError(e.getMessage());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+//		catch (MalformedURLException e) {
+//			jsonError(e.getMessage());
+//		} catch (UnsupportedEncodingException e) {
+//			jsonError(e.getMessage());
+//		}
 
 	}
 
@@ -94,7 +117,6 @@ public class ControlAction extends BaseAction {
 				return;
 			}
 			UserManager userManager = (UserManager) ApplicationUtil.act.getBean("userManager");
-
 			User user = (User) session.getAttribute("user");
 			if (user == null) {
 				jsonError("请授权小程序登陆");

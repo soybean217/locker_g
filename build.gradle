@@ -72,7 +72,8 @@ compile group: 'org.tuckey', name: 'urlrewrite', version: '2.5.2'
 
 // https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
 //compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4'
-compile 'net.sf.json-lib:json-lib:2.4:jdk15' 
+compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+compile 'com.github.qcloudsms:qcloudsms:1.0.6'  
 
 compile files('lib/wxpay-scanpay-java-sdk-1.0.jar')
 
